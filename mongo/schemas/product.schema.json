@@ -1,0 +1,51 @@
+{
+    "title": "Record of products",
+    "description": "This document records the details of an product",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "A unique identifier for an product",
+            "bsonType": "objectId"
+        },
+        "nome": {
+            "bsonType": "string",
+            "minLength": 3
+        },
+        "descrição": {
+            "bsonType": "string",
+            "minLength": 10
+        },
+        "slug": {
+            "bsonType": "string",
+            "minLength": 5
+        },
+        "estoque": {
+            "bsonType": "number",
+            "minLength": 5,
+            "minimum": 0
+        },
+        "preco":{
+            "bsonType": "number",
+            "minimum": 0
+        },
+        "categoria": {
+            "bsonType": "string",
+            "enum": [
+                "AUTOMOTIVA",
+                "CELULARES",
+                "INFORMÁTICA",
+                "LIVROS",
+                "MÓVEIS"
+            ]
+        }
+    },
+    "required": [
+        "nome",
+        "descrição",
+        "slug",
+        "estoque",
+        "categoria",
+        "preco"
+    ],
+    "additionalProperties": false
+}
