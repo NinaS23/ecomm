@@ -8,7 +8,7 @@ const usersList = [
         "email":"uramni@email.com",
         "senha":"alura23",
         "dataCriacao": criationDate,
-        "cpf": "88792698018",
+        "cpf": "88792695618",
         "telefone": "95858-7457",
         "endereco":{
             "bairro": "Centro",
@@ -25,7 +25,7 @@ const usersList = [
         "email":"Emilia@email.com",
         "senha":"alura23",
         "dataCriacao": criationDate,
-        "cpf": "88792698018",
+        "cpf": "88792689018",
         "telefone": "95858-7809",
         "endereco":{
             "bairro": "Centro",
@@ -42,7 +42,7 @@ const usersList = [
         "email":"Alice@email.com",
         "senha":"alura23",
         "dataCriacao": criationDate,
-        "cpf": "88792698018",
+        "cpf": "88792698019",
         "telefone": "95858-7657",
         "endereco":{
             "bairro": "Centro",
