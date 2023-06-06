@@ -1,0 +1,54 @@
+use("ecomm")
+
+let orderDate = new Date();
+
+const orderList = [
+    {
+        "dataPedido": orderDate,
+        "enderecoEntrega": {
+            "bairro": "Centro",
+            "rua": "Avenida Floriano Gonçalves de Lima 93",
+            "numero": "1549",
+            "complemento": "em frente ao pet shop xero-bom",
+            "cep": "55555970",
+            "cidade": "Xexéu",
+            "uf": "PE"
+        },
+        "account": {
+            "accountId": ObjectId("647f2876d21db6b78c0f4f98"),
+            "cliente": "Emilia Dos Santos"
+        },
+        "itens": [
+            {
+                "productId": ObjectId("647def57a672065edc69d312"),
+                "quantidade": 3,
+                "precoUnitario": 9176
+            }
+        ]
+    },
+    {
+        "dataPedido": orderDate,
+        "enderecoEntrega": {
+            "bairro": "Centro",
+            "rua": "Avenida Floriano Gonçalves de Lima 93",
+            "numero": "1549",
+            "complemento": "em frente ao pet shop xero-bom",
+            "cep": "55555970",
+            "cidade": "Xexéu",
+            "uf": "PE"
+        },
+        "account": {
+            "accountId": ObjectId("60bfebcf78b34839687ea187"),
+            "cliente": "Alice Dos Santos"
+        },
+        "itens": [
+            {
+                "productId": ObjectId("647def57a672065edc69d30e"),
+                "quantidade": 1,
+                "precoUnitario": 3523
+            }
+        ]
+    }
+]
+
+db.orders.insertMany(orderList);

@@ -25,6 +25,7 @@ db.createCollection("orders", {
                         "bairro",
                         "rua",
                         "numero",
+                        "complemento",
                         "cep",
                         "cidade",
                         "uf"
@@ -103,19 +104,19 @@ db.createCollection("orders", {
                                 description: "Id do produto."
                             },
                             quantidade: {
-                                bsonType: "int",
+                                bsonType: "number",
                                 minimum: 0,
                                 exclusiveMinimum: true,
                                 description: "No mínimo 1 item."
                             },
                             precoUnitario: {
-                                bsonType: "decimal",
+                                bsonType: "number",
                                 minimum: 0,
                                 exclusiveMinimum: true,
                                 description: "Preço unitário."
                             },
                             "desconto": {
-                                bsonType: "decimal",
+                                bsonType: "number",
                                 minimum: 0,
                                 exclusiveMinimum: true,
                                 description: "Valor de desconto."
