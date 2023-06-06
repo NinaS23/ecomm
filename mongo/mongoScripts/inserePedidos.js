@@ -45,7 +45,8 @@ const orderList = [
             {
                 "productId": ObjectId("647def57a672065edc69d30e"),
                 "quantidade": 1,
-                "precoUnitario": 3523
+                "precoUnitario": 3523,
+                "desconto": 50
             }
         ]
     }
