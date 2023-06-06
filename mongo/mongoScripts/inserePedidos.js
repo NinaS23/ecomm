@@ -21,8 +21,8 @@ const orderList = [
         "itens": [
             {
                 "productId": ObjectId("647def57a672065edc69d312"),
-                "quantidade": 3,
-                "precoUnitario": 9176
+                "quantidade": 1,
+                "precoUnitario": NumberDecimal(9176)
             }
         ]
     },
@@ -45,8 +45,8 @@ const orderList = [
             {
                 "productId": ObjectId("647def57a672065edc69d30e"),
                 "quantidade": 1,
-                "precoUnitario": 3523,
-                "desconto": 50
+                "precoUnitario": NumberDecimal(3523),
+                "desconto": NumberDecimal(50)
             }
         ]
     }

@@ -21,13 +21,13 @@
                 "minLength": 5
             },
             "estoque": {
-                "bsonType": "number",
-                "minLength": 5,
+                "bsonType": "int",
                 "minimum": 0
             },
             "preco": {
-                "bsonType": "number",
-                "minimum": 0
+                "bsonType": "decimal",
+                "minimum": 0.00,
+                "exclusiveMinimum":true
             },
             "categoria": {
                 "bsonType": "string",

@@ -104,20 +104,20 @@ db.createCollection("orders", {
                                 description: "Id do produto."
                             },
                             quantidade: {
-                                bsonType: "number",
+                                bsonType: "int",
                                 minimum: 0,
                                 exclusiveMinimum: true,
                                 description: "No mínimo 1 item."
                             },
                             precoUnitario: {
-                                bsonType: "number",
-                                minimum: 0,
+                                bsonType: "decimal",
+                                minimum: 0.00,
                                 exclusiveMinimum: true,
                                 description: "Preço unitário."
                             },
                             "desconto": {
-                                bsonType: "number",
-                                minimum: 0,
+                                bsonType: "decimal",
+                                minimum: 0.00,
                                 exclusiveMinimum: true,
                                 description: "Valor de desconto."
                             },
