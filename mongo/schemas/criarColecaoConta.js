@@ -1,9 +1,11 @@
+use("ecomm")
+
 db.createCollection("accounts", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
             required: [
-                "username",
+                "nome_de_usuario",
                 "email",
                 "senha",
                 "dataCriacao",
