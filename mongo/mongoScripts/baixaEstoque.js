@@ -35,8 +35,8 @@ const verificandoQuantidadeDoProduto = {
 };
 
 const diminuirEstoque = {
-    $min: {
-        estoque:(produtoQueFoiPedido.quantidade)
+    $inc: {
+        estoque: - ( produtoQueFoiPedido.quantidade)
     }
 };
 
