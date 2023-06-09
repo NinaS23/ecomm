@@ -1,11 +1,11 @@
 {
   "$jsonSchema": {
-    "title": "Record of categories",
-    "description": "This document records the details of an categories",
+    "title": "registro de categorias",
+    "description": "esse documento é um registro de detalhes da colecao categorias",
     "type": "object",
     "properties": {
       "_id": {
-        "description": "A unique identifier for an categorie",
+        "description": "Um identificador unico para cada categoria",
         "bsonType": "objectId"
       },
       "nome": {

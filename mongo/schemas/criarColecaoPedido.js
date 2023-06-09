@@ -11,9 +11,9 @@ db.createCollection("orders", {
                 "itens"
             ],
             properties: {
-                "_id": {
-                    "description": "A unique identifier for an order",
-                     "bsonType": "objectId"
+                _id: {
+                    description: "Um identificador unico para cada pedido",
+                    bsonType: "objectId"
                  },
                 dataPedido: {
                     bsonType: "date",

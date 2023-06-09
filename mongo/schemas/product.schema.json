@@ -1,11 +1,11 @@
 {
     "$jsonSchema": {
-        "title": "Record of products",
-        "description": "This document records the details of an product",
+        "title": "registro de produtos",
+        "description": "esse documento é um registro de detalhes da colecao produtos",
         "type": "object",
         "properties": {
             "_id": {
-                "description": "A unique identifier for an product",
+                "description": "Um identificador unico para cada produto",
                 "bsonType": "objectId"
             },
             "nome": {

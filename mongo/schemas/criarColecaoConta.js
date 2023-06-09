@@ -14,9 +14,9 @@ db.createCollection("accounts", {
                 "endereco"
             ],
             properties: {
-                "_id": {
-                    "description": "A unique identifier for an account",
-                     "bsonType": "objectId"
+                _id: {
+                    description: "Um identificador unico para cada conta",
+                    bsonType: "objectId"
                  },
                 nome_de_usuario: {
                     bsonType: "string",

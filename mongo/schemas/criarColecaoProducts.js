@@ -2,39 +2,39 @@ use("ecomm")
 
 db.createCollection("products", {
     validator: {
-        "$jsonSchema": {
-            "title": "Record of products",
-            "description": "This document records the details of an product",
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "description": "A unique identifier for an product",
-                    "bsonType": "objectId"
+       $jsonSchema: {
+            title: "registro de produtos",
+            description: "esse documento é um registro de detalhes da colecao produtos",
+            type: "object",
+            properties: {
+                _id: {
+                    description: "Um identificador unico para cada produto",
+                    bsonType: "objectId"
                 },
-                "nome": {
-                    "bsonType": "string",
-                    "minLength": 3
+                nome: {
+                    bsonType: "string",
+                    minLength: 3
                 },
-                "descrição": {
-                    "bsonType": "string",
-                    "minLength": 10
+                descrição: {
+                    bsonType: "string",
+                    minLength: 10
                 },
-                "slug": {
-                    "bsonType": "string",
-                    "minLength": 5
+                slug: {
+                    bsonType: "string",
+                    minLength: 5
                 },
-                "estoque": {
-                    "bsonType": "int",
-                    "minimum": 0
+                estoque: {
+                    bsonType: "int",
+                    minimum: 0
                 },
                 "preco": {
-                    "bsonType": "decimal",
-                    "minimum": 0.00,
-                    "exclusiveMinimum": true
+                    bsonType: "decimal",
+                    minimum: 0.00,
+                    exclusiveMinimum: true
                 },
-                "categoria": {
-                    "bsonType": "string",
-                    "enum": [
+                categoria: {
+                    bsonType: "string",
+                    enum: [
                         "AUTOMOTIVA",
                         "CELULARES",
                         "INFORMÁTICA",
@@ -43,7 +43,7 @@ db.createCollection("products", {
                     ]
                 }
             },
-            "required": [
+            required: [
                 "nome",
                 "descrição",
                 "slug",
@@ -51,7 +51,7 @@ db.createCollection("products", {
                 "categoria",
                 "preco"
             ],
-            "additionalProperties": false
+            additionalProperties: false
         }
     }
 });
