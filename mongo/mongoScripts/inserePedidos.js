@@ -47,6 +47,11 @@ const orderList = [
                 "quantidade": 1,
                 "precoUnitario": NumberDecimal(3523),
                 "desconto": NumberDecimal(50)
+            },    {
+                "productId": ObjectId("647def57a672065edc69d30e"),
+                "quantidade": 1,
+                "precoUnitario": NumberDecimal(3523),
+                "desconto": NumberDecimal(50)
             }
         ]
     }
