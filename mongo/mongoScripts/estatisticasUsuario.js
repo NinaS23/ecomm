@@ -1,11 +1,21 @@
 use("ecomm")
+
+const cliente = db.accounts.findOne({
+   nome_de_usuario: 'Emilia Dos Santos'
+})
+
 const result = db.orders.aggregate([
+   {
+      $match: {
+          "account.accountId": cliente._id
+      }
+  },
     {
        $unwind: '$itens'
     },
     {
        $group: {
-          _id: "$account.cliente",
+          _id: "$_id",
           somaQuantidades: { $sum: '$itens.quantidade' },
           montanteTotalPedidos: {
              $sum: {
@@ -17,9 +27,13 @@ const result = db.orders.aggregate([
           },
           montanteTotalDesconto: { $sum: { $toInt: '$itens.desconto'  } }
        }
-    }
+    },
+    {
+      $addFields: {
+          cliente: cliente.nome_de_usuario
+      }
+  }
  ]);
-
 
 
 console.log(result)
