@@ -22,13 +22,7 @@ const pedido = {
         "accountId": ObjectId("6480f55bcc81d477fda96440"),
         "cliente": "Emilia Dos Santos"
     },
-    "itens":[
-        {
-            productId: new ObjectId("648336b5dddea3f9a30b9d83"),
-            quantidade: 1,
-            precoUnitario: NumberDecimal("102.9")
-        }
-    ]
+    "itens":[produtoQueFoiPedido]
 };
 
 
