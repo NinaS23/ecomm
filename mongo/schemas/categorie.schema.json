@@ -1,0 +1,29 @@
+{
+  "$jsonSchema": {
+    "title": "registro de categorias",
+    "description": "esse documento é um registro de detalhes da colecao categorias",
+    "type": "object",
+    "properties": {
+      "_id": {
+        "description": "Um identificador unico para cada categoria",
+        "bsonType": "objectId"
+      },
+      "nome": {
+        "bsonType": "string",
+        "minLength": 3
+      },
+      "status": {
+        "bsonType": "string",
+        "enum": [
+          "ATIVA",
+          "INATIVA"
+        ]
+      }
+    },
+    "required": [
+      "nome",
+      "status"
+    ],
+    "additionalProperties": false
+  }
+}
