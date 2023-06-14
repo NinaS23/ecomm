@@ -52,7 +52,6 @@ async function criarCategoria() {
   const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json"
   const encoding = 'utf-8';
   const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding)
-
   const headers = {
     "Content-Type": "application/json"
   }
@@ -61,7 +60,6 @@ async function criarCategoria() {
     headers: headers,
     body: categoria
   };
-
   fetch("http://localhost:3000/categories", requestOptions)
     .then((response) => {
       console.log("response status:" + " " + chalk.green(response.status));
@@ -70,7 +68,6 @@ async function criarCategoria() {
     .then((data) => {
       console.log(chalk.bgMagentaBright("A Categoria foi cadastrada com Sucesso!!"))
       console.log(data)
-
     })
     .catch((error) => {
       trataErro(error)
