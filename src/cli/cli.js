@@ -22,9 +22,7 @@ async function processarComandos(args) {
 
         case "--recuperarCategoriaPorId":
             try {
-                console.log(chalk.bgMagentaBright("A categoria Desejada é:"))
-                const pegarCategoria = await categoryService.econtraCategoriaPeloId(pegarIdDaCategoriaPeloTerminal);
-                setTimeout(() => { pegarCategoria }, 2000)
+                await categoryService.econtraCategoriaPeloId(pegarIdDaCategoriaPeloTerminal);
 
             } catch (error) {
                 console.log(error)

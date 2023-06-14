@@ -33,11 +33,13 @@ function econtraCategoriaPeloId(id) {
         return response.json();
       })
       .then((data) => {
+        console.log(chalk.bgMagentaBright("A categoria Desejada é:"))
         const categorias = data;
-        categorias.find((categoria) => {
-           if(categoria.id === idDaCategoriaDesejada) console.log(categoria)
+        const acharCategoria = categorias.find((categoria) => {
+          if (categoria.id === idDaCategoriaDesejada) console.log(categoria)
         })
-      
+        setTimeout(() => { acharCategoria }, 2000)
+
       })
       .catch((error) => {
         reject(trataErro(error));
