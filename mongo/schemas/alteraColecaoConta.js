@@ -45,7 +45,7 @@ db.runCommand({
                 },
                 telefone: {
                     bsonType: "number",
-                    pattern:"^\d{1}|[S/N]$",
+                    pattern:"^[0-9]{11}$",
                     description: "Telefone com no mínimo 10 caracteres."
                 },
                 endereco: {
