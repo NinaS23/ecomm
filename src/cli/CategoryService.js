@@ -99,13 +99,35 @@ async function atualizaCategoria() {
     });
 }
 
+async function deletarCategoria() {
+  const headers = {
+    "Content-Type": "application/json"
+  }
+  let requestOptions = {
+    method: 'DELETE',
+    headers: headers,
+  };
+  fetch("http://localhost:3000/categories/8", requestOptions)
+    .then((response) => {
+      console.log("response status:" + " " + chalk.green(response.status));
+      return response.json();
+    })
+    .then((data) => {
+      console.log(chalk.bgMagentaBright("A Categoria foi deletada com Sucesso!!"))
+      console.log(data)
+    })
+    .catch((error) => {
+      trataErro(error)
+    });
+}
 
 
 const categoryService = {
   encontraCategorias,
   econtraCategoriaPeloId,
   criarCategoria,
-  atualizaCategoria
+  atualizaCategoria,
+  deletarCategoria
 }
 
 export default categoryService

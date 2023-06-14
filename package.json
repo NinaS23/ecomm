@@ -10,7 +10,8 @@
         "listarCategorias": "node ./src/cli/cli.js --listarCategorias",
         "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 8",
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
-        "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria"
+        "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria",
+        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria"
     },
     "author": "",
     "license": "MIT",

@@ -42,6 +42,12 @@ async function processarComandos(args) {
                 console.log(error);
             }
             break;
+        case "--excluirCategoria":
+            try {
+                await categoryService.deletarCategoria();
+            } catch (error) {
+                console.log(error);
+            }
     }
 
 }
