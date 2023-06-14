@@ -8,7 +8,7 @@
         "start": "node src/main.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "listarCategorias": "node ./src/cli/cli.js --listarCategorias",
-        "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 8",
+        "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 9",
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
         "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria",
         "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria"

@@ -25,20 +25,28 @@ function encontraCategorias() {
 }
 
 function econtraCategoriaPeloId(id) {
+  let statusCode;
   let idDaCategoriaDesejada = id;
   return new Promise((resolve, reject) => {
     fetch('http://localhost:3000/categories')
       .then((response) => {
         console.log("response status:" + " " + chalk.green(response.status));
+        statusCode = response.status
         return response.json();
       })
       .then((data) => {
-        console.log(chalk.bgMagentaBright("A categoria Desejada é:"))
-        const categorias = data;
-        const acharCategoria = categorias.find((categoria) => {
-          if (categoria.id === idDaCategoriaDesejada) console.log(categoria)
-        })
-        setTimeout(() => { acharCategoria }, 2000)
+        if (statusCode === 200) {
+          console.log(chalk.bgMagentaBright("A categoria Desejada é:"))
+          const categorias = data;
+          categorias.find((categoria) => {
+            if (categoria.id === idDaCategoriaDesejada) console.log(categoria)
+          })
+
+        } else if (statusCode === 404) {
+          console.log(chalk.red("Categoria não encontrada"))
+        } else {
+          console.log(chalk.red("Problema ao procurar categoria"))
+        }
 
       })
       .catch((error) => {
@@ -48,6 +56,7 @@ function econtraCategoriaPeloId(id) {
 }
 
 async function criarCategoria() {
+  let statusCode;
   const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json"
   const encoding = 'utf-8';
   const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding)
@@ -62,10 +71,12 @@ async function criarCategoria() {
   fetch("http://localhost:3000/categories", requestOptions)
     .then((response) => {
       console.log("response status:" + " " + chalk.green(response.status));
+      statusCode = response.status
       return response.json();
     })
     .then((data) => {
-      console.log(chalk.bgMagentaBright("A Categoria foi cadastrada com Sucesso!!"))
+      if (statusCode === 201) console.log(chalk.bgMagentaBright("A Categoria foi cadastrada com Sucesso!!"))
+      else console.log(chalk.red("Erro na inserção de uma categoria"))
       console.log(data)
     })
     .catch((error) => {
@@ -74,6 +85,7 @@ async function criarCategoria() {
 }
 
 async function atualizaCategoria() {
+  let statusCode;
   const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json"
   const encoding = 'utf-8';
   const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding)
@@ -88,10 +100,12 @@ async function atualizaCategoria() {
   fetch("http://localhost:3000/categories/7", requestOptions)
     .then((response) => {
       console.log("response status:" + " " + chalk.green(response.status));
+      statusCode = response.status
       return response.json();
     })
     .then((data) => {
-      console.log(chalk.bgMagentaBright("A Categoria foi atualizada com Sucesso!!"))
+      if (statusCode === 404) console.log(chalk.red(" Categoria não encontrada"))
+      if (statusCode === 200) console.log(chalk.bgMagentaBright("A Categoria foi atualizada com Sucesso!!"))
       console.log(data)
     })
     .catch((error) => {
@@ -100,6 +114,7 @@ async function atualizaCategoria() {
 }
 
 async function deletarCategoria() {
+  let statusCode;
   const headers = {
     "Content-Type": "application/json"
   }
@@ -110,10 +125,12 @@ async function deletarCategoria() {
   fetch("http://localhost:3000/categories/8", requestOptions)
     .then((response) => {
       console.log("response status:" + " " + chalk.green(response.status));
+      statusCode = response.status
       return response.json();
     })
     .then((data) => {
-      console.log(chalk.bgMagentaBright("A Categoria foi deletada com Sucesso!!"))
+      if (statusCode === 404) console.log(chalk.red(" Categoria não encontrada"))
+      if (statusCode === 200) console.log(chalk.bgMagentaBright("A Categoria foi deletada com Sucesso!!"))
       console.log(data)
     })
     .catch((error) => {
