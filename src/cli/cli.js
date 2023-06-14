@@ -28,6 +28,12 @@ async function processarComandos(args) {
                 console.log(error)
             }
             break;
+        case "--inserirCategoria":
+            try {
+                await categoryService.criarCategoria();
+            } catch (error) {
+                console.log(error);
+            }
     }
 
 }

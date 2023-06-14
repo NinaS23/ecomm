@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import fs from "fs";
 
 function trataErro(error) {
   throw new Error(chalk.red('Erro na requisição:'), error);
@@ -47,9 +48,42 @@ function econtraCategoriaPeloId(id) {
   });
 }
 
+async function criarCategoria() {
+  const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json"
+  const encoding = 'utf-8';
+  const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding)
+
+  const headers = {
+    "Content-Type": "application/json"
+  }
+  let requestOptions = {
+    method: 'POST',
+    headers: headers,
+    body: categoria
+  };
+
+  fetch("http://localhost:3000/categories", requestOptions)
+    .then((response) => {
+      console.log("response status:" + " " + chalk.green(response.status));
+      return response.json();
+    })
+    .then((data) => {
+      console.log(chalk.bgMagentaBright("A Categoria foi cadastrada com Sucesso!!"))
+      console.log(data)
+
+    })
+    .catch((error) => {
+      trataErro(error)
+    });
+
+
+}
+
+
 const categoryService = {
   encontraCategorias,
-  econtraCategoriaPeloId
+  econtraCategoriaPeloId,
+  criarCategoria
 }
 
 export default categoryService
