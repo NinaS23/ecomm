@@ -72,7 +72,7 @@ db.runCommand({
                         },
                         numero: {
                             bsonType: ["number","string"],
-                            pattern: "^d{1}|[S/N]",
+                            pattern: "^\d{1}|[S/N]$",
                             description: "Número com no mínimo 1 caractere."
                         },
                         complemento: {
