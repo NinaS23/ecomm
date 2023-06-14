@@ -9,7 +9,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "listarCategorias": "node ./src/cli/cli.js --listarCategorias",
         "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 8",
-        "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria"
+        "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
+        "x": "node ./src/cli/cli.js --atualizarCategoria"
     },
     "author": "",
     "license": "MIT",

@@ -34,6 +34,14 @@ async function processarComandos(args) {
             } catch (error) {
                 console.log(error);
             }
+            break;
+        case "--atualizarCategoria":
+            try {
+                await categoryService.atualizaCategoria();
+            } catch (error) {
+                console.log(error);
+            }
+            break;
     }
 
 }
