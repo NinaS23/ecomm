@@ -11,7 +11,7 @@
         "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 9",
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
         "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria 7",
-        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria 8",
+        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria 10",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"
     },

@@ -40,116 +40,99 @@ function renderizaDados(dados) {
 
 }
 class categoryService {
-	static encontraCategorias() {
-		return new Promise((resolve, reject) => {
-			fetch("http://localhost:3000/categories")
-				.then((response) => {
-					renderizaStatus(response.status, "get");
-					return response.json();
-				})
-				.then((data) => {
-					setTimeout(() => {
-						renderizaDados(data);
-					}, 2000);
-				})
-				.catch((error) => {
-					reject(trataErro(error));
-				});
-		});
+	static async encontraCategorias() {
+		try {
+			const response = await fetch("http://localhost:3000/categories");
+			const dado = await response.json();
+			let status = response.status;
+			renderizaDados(dado);
+			renderizaStatus(status);
+		} catch (error) {
+			trataErro(error);
+		}
 	}
 
-	static econtraCategoriaPeloId(id) {
-		let idDaCategoriaDesejada = id;
-		return new Promise((_, reject) => {
-			fetch("http://localhost:3000/categories")
-				.then((response) => {
-					renderizaStatus(response.status, "get");
-					return response.json();
-				})
-				.then((data) => {
-					const categorias = data;
-					categorias.find((categoria) => {
-						if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
-					});
-
-				})
-				.catch((error) => {
-					reject(trataErro(error));
-				});
-		});
+	static async  econtraCategoriaPeloId(id) {
+		try {
+			let idDaCategoriaDesejada = id;
+			const response = await fetch("http://localhost:3000/categories");
+			const categorias = await response.json();
+			categorias.find((categoria) => {
+				if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
+			});
+			let status = response.status;
+			renderizaStatus(status,"get");
+		} catch (error) {
+			trataErro(error);
+		}
 	}
 
 	static async criarCategoria() {
-		const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json";
-		const encoding = "utf-8";
-		const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
-		const headers = {
-			"Content-Type": "application/json"
-		};
-		let requestOptions = {
-			method: "POST",
-			headers: headers,
-			body: categoria
-		};
-		fetch("http://localhost:3000/categories", requestOptions)
-			.then((response) => {
-				renderizaStatus(response.status);
-				return response.json();
-			})
-			.then((data) => {
-				renderizaDados(data);
-			})
-			.catch((error) => {
-				trataErro(error);
-			});
+		try {
+			const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json";
+			const encoding = "utf-8";
+			const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
+			const headers = {
+				"Content-Type": "application/json"
+			};
+			let requestOptions = {
+				method: "POST",
+				headers: headers,
+				body: categoria
+			};
+			const response = await fetch("http://localhost:3000/categories", requestOptions);
+			const categoriaCriada = await response.json();
+			let status = response.status;
+			renderizaStatus(status);
+			renderizaDados(categoriaCriada);
+		} catch (error) {
+			trataErro(error);
+		}
+
 	}
 
 	static async atualizaCategoria(idDaCategoria) {
-		let categoriaId = idDaCategoria;
-		const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json";
-		const encoding = "utf-8";
-		const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
-		const headers = {
-			"Content-Type": "application/json"
-		};
-		let requestOptions = {
-			method: "PATCH",
-			headers: headers,
-			body: atualizarData
-		};
-		fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
-			.then((response) => {
-				renderizaStatus(response.status, "patch");
-				return response.json();
-			})
-			.then((data) => {
-				renderizaDados(data);
-			})
-			.catch((error) => {
-				trataErro(error);
-			});
+		try {
+			let categoriaId = idDaCategoria;
+			const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json";
+			const encoding = "utf-8";
+			const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
+			const headers = {
+				"Content-Type": "application/json"
+			};
+			let requestOptions = {
+				method: "PATCH",
+				headers: headers,
+				body: atualizarData
+			};
+			const response = await fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions);
+			const categoriaCriada = await response.json();
+			let status = response.status;
+			renderizaStatus(status, "patch");
+			renderizaDados(categoriaCriada);
+		} catch (error) {
+			trataErro(error);
+		}
 	}
 
 	static async deletarCategoria(idDaCategoria) {
-		let categoriaId = idDaCategoria;
-		const headers = {
-			"Content-Type": "application/json"
-		};
-		let requestOptions = {
-			method: "DELETE",
-			headers: headers,
-		};
-		fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
-			.then((response) => {
-				renderizaStatus(response.status, "delete");
-				return response.json();
-			})
-			.then((data) => {
-				renderizaDados(data);
-			})
-			.catch((error) => {
-				trataErro(error);
-			});
+		try {
+			let categoriaId = idDaCategoria;
+			const headers = {
+				"Content-Type": "application/json"
+			};
+			let requestOptions = {
+				method: "DELETE",
+				headers: headers,
+			};
+			const response = await fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions);
+			const categoriaCriada = await response.json();
+			let status = response.status;
+			renderizaStatus(status, "delete");
+			renderizaDados(categoriaCriada);
+		} catch (error) {
+			trataErro(error);
+		}
 	}
 }
 

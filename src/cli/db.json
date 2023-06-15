@@ -39,6 +39,16 @@
       "nome": "VESTUÁRIO",
       "status": "ATIVA",
       "id": 9
+    },
+    {
+      "nome": "VESTUÁRIO",
+      "status": "ATIVA",
+      "id": 11
+    },
+    {
+      "nome": "VESTUÁRIO",
+      "status": "ATIVA",
+      "id": 12
     }
   ]
 }
