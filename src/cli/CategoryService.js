@@ -4,7 +4,7 @@ import fs from "fs";
 const URL = "http://localhost:3000/categories";
 
 function trataErro(error) {
-	throw new Error(chalk.red("Erro na requisição:"), error);
+	console.log(chalk.red("Erro na requisição:"), error);
 }
 function renderizaStatus(statusCode, method) {
 	try {
@@ -33,11 +33,7 @@ function renderizaStatus(statusCode, method) {
 
 
 function renderizaDados(dados) {
-	const dadosResolvidos = Promise.resolve(dados);
-	dadosResolvidos.then((value) => {
-		console.log(value);
-	});
-
+	console.log(dados);
 }
 class categoryService {
 	static async encontraCategorias() {
@@ -45,8 +41,9 @@ class categoryService {
 			const response = await fetch(URL);
 			const categorias = await response.json();
 			let status = response.status;
+			renderizaStatus(status,"get");
 			renderizaDados(categorias);
-			renderizaStatus(status);
+		
 		} catch (error) {
 			trataErro(error);
 		}
