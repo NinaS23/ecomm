@@ -11,11 +11,18 @@
         "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 9",
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
         "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria",
-        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria"
+        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
     },
     "author": "",
     "license": "MIT",
     "dependencies": {
         "chalk": "^5.2.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.42.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.27.5"
     }
 }
