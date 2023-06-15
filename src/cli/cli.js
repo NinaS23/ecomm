@@ -50,7 +50,7 @@ async function processarComandos(args) {
             }
     }
 
-}
+};
 
 
 processarComandos(comando);

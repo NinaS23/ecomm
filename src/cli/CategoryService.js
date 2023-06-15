@@ -3,7 +3,7 @@ import fs from "fs";
 
 function trataErro(error) {
   throw new Error(chalk.red('Erro na requisição:'), error);
-}
+};
 
 function encontraCategorias() {
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ function encontraCategorias() {
         reject(trataErro(error));
       });
   });
-}
+};
 
 function econtraCategoriaPeloId(id) {
   let statusCode;
@@ -53,7 +53,7 @@ function econtraCategoriaPeloId(id) {
         reject(trataErro(error));
       });
   });
-}
+};
 
 async function criarCategoria() {
   let statusCode;
@@ -82,7 +82,7 @@ async function criarCategoria() {
     .catch((error) => {
       trataErro(error)
     });
-}
+};
 
 async function atualizaCategoria() {
   let statusCode;
@@ -111,7 +111,7 @@ async function atualizaCategoria() {
     .catch((error) => {
       trataErro(error)
     });
-}
+};
 
 async function deletarCategoria() {
   let statusCode;
@@ -136,7 +136,7 @@ async function deletarCategoria() {
     .catch((error) => {
       trataErro(error)
     });
-}
+};
 
 
 const categoryService = {
@@ -145,9 +145,9 @@ const categoryService = {
   criarCategoria,
   atualizaCategoria,
   deletarCategoria
-}
+};
 
-export default categoryService
+export default categoryService;
 
 
 
