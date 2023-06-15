@@ -11,15 +11,15 @@ function renderizaStatus(statusCode, method) {
 		if (statusCode === 200 && method === "get") {
 			console.log("response status:" + " " + chalk.green(statusCode));
 		} else if (statusCode === 404) {
-			console.log("response status:" + " " + chalk.red( statusCode));
+			console.log("response status:" + " " + chalk.red(statusCode));
 			console.log(chalk.red("categoria não encontrada"));
 		} else if (statusCode === 200 && method === "patch") {
 			console.log(chalk.bgMagentaBright("categoria atualizada com sucesso"));
-			console.log("response status:" + " " + chalk.green(statusCode));		
+			console.log("response status:" + " " + chalk.green(statusCode));
 		} else if (statusCode === 201) {
 			console.log("response status:" + " " + chalk.green(statusCode));
 			console.log(chalk.bgMagentaBright("categoria criada com sucesso"));
-		}else if(statusCode === 200 && method === "delete"){
+		} else if (statusCode === 200 && method === "delete") {
 			console.log("response status:" + " " + statusCode);
 			console.log(chalk.bgMagentaBright("categoria delatada com sucesso"));
 		} else {
@@ -36,7 +36,7 @@ function renderizaDados(dados) {
 	dadosResolvidos.then((value) => {
 		console.log(value);
 	});
-	
+
 }
 
 function encontraCategorias() {
@@ -49,7 +49,7 @@ function encontraCategorias() {
 			.then((data) => {
 				setTimeout(() => {
 					renderizaDados(data);
-				}, 2000);	
+				}, 2000);
 			})
 			.catch((error) => {
 				reject(trataErro(error));
@@ -70,7 +70,7 @@ function econtraCategoriaPeloId(id) {
 				categorias.find((categoria) => {
 					if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
 				});
-				
+
 			})
 			.catch((error) => {
 				reject(trataErro(error));
@@ -96,7 +96,7 @@ async function criarCategoria() {
 			return response.json();
 		})
 		.then((data) => {
-			renderizaDados(data);	
+			renderizaDados(data);
 		})
 		.catch((error) => {
 			trataErro(error);
@@ -118,7 +118,7 @@ async function atualizaCategoria(idDaCategoria) {
 	};
 	fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
 		.then((response) => {
-			renderizaStatus(response.status,"patch");
+			renderizaStatus(response.status, "patch");
 			return response.json();
 		})
 		.then((data) => {
