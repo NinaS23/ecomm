@@ -1,8 +1,6 @@
-import chalk from "chalk";
 import categoryService from "./CategoryService.js";
 
 const comando = process.argv;
-
 
 async function processarComandos(args) {
 	let comando = args[2];
@@ -11,42 +9,20 @@ async function processarComandos(args) {
 	switch (comando) {
 
 	case "--listarCategorias":
-		try {
-			console.log(" ");
-			console.log(chalk.bgMagentaBright("listando Categorias..."));
-			await categoryService.encontraCategorias();
-		} catch (error) {
-			console.log("erro:", error);
-		}
+		await categoryService.encontraCategorias();
 		break;
-
 	case "--recuperarCategoriaPorId":
-		try {
-			await categoryService.econtraCategoriaPeloId(pegarIdDaCategoriaPeloTerminal);
-		} catch (error) {
-			console.log(error);
-		}
+		await categoryService.econtraCategoriaPeloId(pegarIdDaCategoriaPeloTerminal);
 		break;
 	case "--inserirCategoria":
-		try {
-			await categoryService.criarCategoria();
-		} catch (error) {
-			console.log(error);
-		}
+		await categoryService.criarCategoria();
 		break;
 	case "--atualizarCategoria":
-		try {
-			await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal);
-		} catch (error) {
-			console.log(error);
-		}
+		await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal);
 		break;
 	case "--excluirCategoria":
-		try {
-			await categoryService.deletarCategoria(pegarIdDaCategoriaPeloTerminal);
-		} catch (error) {
-			console.log(error);
-		}
+		await categoryService.deletarCategoria(pegarIdDaCategoriaPeloTerminal);
+		break;
 	}
 }
 
