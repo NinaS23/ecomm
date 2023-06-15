@@ -5,18 +5,51 @@ function trataErro(error) {
 	throw new Error(chalk.red("Erro na requisição:"), error);
 }
 
+
+function renderizaStatus(statusCode, method) {
+	try {
+		if (statusCode === 200 && method === "get") {
+			console.log("response status:" + " " + chalk.green(statusCode));
+		} else if (statusCode === 404) {
+			console.log("response status:" + " " + chalk.red( statusCode));
+			console.log(chalk.red("categoria não encontrada"));
+		} else if (statusCode === 200 && method === "patch") {
+			console.log(chalk.bgMagentaBright("categoria atualizada com sucesso"));
+			console.log("response status:" + " " + chalk.green(statusCode));		
+		} else if (statusCode === 201) {
+			console.log("response status:" + " " + chalk.green(statusCode));
+			console.log(chalk.bgMagentaBright("categoria criada com sucesso"));
+		}else if(statusCode === 200 && method === "delete"){
+			console.log("response status:" + " " + statusCode);
+			console.log(chalk.bgMagentaBright("categoria delatada com sucesso"));
+		} else {
+			console.log(statusCode);
+			console.log(chalk.red("Error"));
+		}
+	} catch (error) {
+		trataErro(error);
+	}
+}
+
+function renderizaDados(dados) {
+	const dadosResolvidos = Promise.resolve(dados);
+	dadosResolvidos.then((value) => {
+		console.log(value);
+	});
+	
+}
+
 function encontraCategorias() {
 	return new Promise((resolve, reject) => {
 		fetch("http://localhost:3000/categories")
 			.then((response) => {
-				console.log("response status:" + " " + chalk.green(response.status));
+				renderizaStatus(response.status, "get");
 				return response.json();
 			})
 			.then((data) => {
 				setTimeout(() => {
-					console.log(data);
-				}, 2000);
-				resolve(data);
+					renderizaDados(data);
+				}, 2000);	
 			})
 			.catch((error) => {
 				reject(trataErro(error));
@@ -25,29 +58,19 @@ function encontraCategorias() {
 }
 
 function econtraCategoriaPeloId(id) {
-	let statusCode;
 	let idDaCategoriaDesejada = id;
-	return new Promise((resolve, reject) => {
+	return new Promise((_, reject) => {
 		fetch("http://localhost:3000/categories")
 			.then((response) => {
-				console.log("response status:" + " " + chalk.green(response.status));
-				statusCode = response.status;
+				renderizaStatus(response.status, "get");
 				return response.json();
 			})
 			.then((data) => {
-				if (statusCode === 200) {
-					console.log(chalk.bgMagentaBright("A categoria Desejada é:"));
-					const categorias = data;
-					categorias.find((categoria) => {
-						if (categoria.id === idDaCategoriaDesejada) console.log(categoria);
-					});
-
-				} else if (statusCode === 404) {
-					console.log(chalk.red("Categoria não encontrada"));
-				} else {
-					console.log(chalk.red("Problema ao procurar categoria"));
-				}
-
+				const categorias = data;
+				categorias.find((categoria) => {
+					if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
+				});
+				
 			})
 			.catch((error) => {
 				reject(trataErro(error));
@@ -56,7 +79,6 @@ function econtraCategoriaPeloId(id) {
 }
 
 async function criarCategoria() {
-	let statusCode;
 	const caminhoDaCategoriaNova = "./src/cli/novaCategoria.json";
 	const encoding = "utf-8";
 	const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
@@ -70,14 +92,11 @@ async function criarCategoria() {
 	};
 	fetch("http://localhost:3000/categories", requestOptions)
 		.then((response) => {
-			console.log("response status:" + " " + chalk.green(response.status));
-			statusCode = response.status;
+			renderizaStatus(response.status);
 			return response.json();
 		})
 		.then((data) => {
-			if (statusCode === 201) console.log(chalk.bgMagentaBright("A Categoria foi cadastrada com Sucesso!!"));
-			else console.log(chalk.red("Erro na inserção de uma categoria"));
-			console.log(data);
+			renderizaDados(data);	
 		})
 		.catch((error) => {
 			trataErro(error);
@@ -85,7 +104,6 @@ async function criarCategoria() {
 }
 
 async function atualizaCategoria(idDaCategoria) {
-	let statusCode;
 	let categoriaId = idDaCategoria;
 	const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json";
 	const encoding = "utf-8";
@@ -100,14 +118,11 @@ async function atualizaCategoria(idDaCategoria) {
 	};
 	fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
 		.then((response) => {
-			console.log("response status:" + " " + chalk.green(response.status));
-			statusCode = response.status;
+			renderizaStatus(response.status,"patch");
 			return response.json();
 		})
 		.then((data) => {
-			if (statusCode === 404) console.log(chalk.red(" Categoria não encontrada"));
-			if (statusCode === 200) console.log(chalk.bgMagentaBright("A Categoria foi atualizada com Sucesso!!"));
-			console.log(data);
+			renderizaDados(data);
 		})
 		.catch((error) => {
 			trataErro(error);
@@ -115,7 +130,6 @@ async function atualizaCategoria(idDaCategoria) {
 }
 
 async function deletarCategoria(idDaCategoria) {
-	let statusCode;
 	let categoriaId = idDaCategoria;
 	const headers = {
 		"Content-Type": "application/json"
@@ -126,14 +140,11 @@ async function deletarCategoria(idDaCategoria) {
 	};
 	fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
 		.then((response) => {
-			console.log("response status:" + " " + chalk.green(response.status));
-			statusCode = response.status;
+			renderizaStatus(response.status, "delete");
 			return response.json();
 		})
 		.then((data) => {
-			if (statusCode === 404) console.log(chalk.red(" Categoria não encontrada"));
-			if (statusCode === 200) console.log(chalk.bgMagentaBright("A Categoria foi deletada com Sucesso!!"));
-			console.log(data);
+			renderizaDados(data);
 		})
 		.catch((error) => {
 			trataErro(error);
