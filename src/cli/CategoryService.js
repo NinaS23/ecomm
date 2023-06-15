@@ -1,11 +1,11 @@
 import chalk from "chalk";
 import fs from "fs";
 
+const URL = "http://localhost:3000/categories";
+
 function trataErro(error) {
 	throw new Error(chalk.red("Erro na requisição:"), error);
 }
-
-
 function renderizaStatus(statusCode, method) {
 	try {
 		if (statusCode === 200 && method === "get") {
@@ -42,7 +42,7 @@ function renderizaDados(dados) {
 class categoryService {
 	static async encontraCategorias() {
 		try {
-			const response = await fetch("http://localhost:3000/categories");
+			const response = await fetch(URL);
 			const categorias = await response.json();
 			let status = response.status;
 			renderizaDados(categorias);
@@ -55,7 +55,7 @@ class categoryService {
 	static async econtraCategoriaPeloId(id) {
 		try {
 			let idDaCategoriaDesejada = id;
-			const response = await fetch("http://localhost:3000/categories");
+			const response = await fetch(URL);
 			const categorias = await response.json();
 			categorias.find((categoria) => {
 				if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
@@ -80,7 +80,7 @@ class categoryService {
 				headers: headers,
 				body: categoria
 			};
-			const response = await fetch("http://localhost:3000/categories", requestOptions);
+			const response = await fetch(URL, requestOptions);
 			const categoriaCriada = await response.json();
 			let status = response.status;
 			renderizaStatus(status);
@@ -105,7 +105,7 @@ class categoryService {
 				headers: headers,
 				body: atualizarData
 			};
-			const response = await fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions);
+			const response = await fetch(`${URL}/${categoriaId}`, requestOptions);
 			const categoriaCriada = await response.json();
 			let status = response.status;
 			renderizaStatus(status, "patch");
@@ -125,7 +125,7 @@ class categoryService {
 				method: "DELETE",
 				headers: headers,
 			};
-			const response = await fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions);
+			const response = await fetch(`${URL}/${categoriaId}`, requestOptions);
 			const categoriaCriada = await response.json();
 			let status = response.status;
 			renderizaStatus(status, "delete");
