@@ -513,3 +513,4 @@ components:
     auth:           
       type: http
       scheme: bearer
+      bearerFormat: JWT
