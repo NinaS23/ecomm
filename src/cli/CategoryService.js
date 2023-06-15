@@ -43,16 +43,16 @@ class categoryService {
 	static async encontraCategorias() {
 		try {
 			const response = await fetch("http://localhost:3000/categories");
-			const dado = await response.json();
+			const categorias = await response.json();
 			let status = response.status;
-			renderizaDados(dado);
+			renderizaDados(categorias);
 			renderizaStatus(status);
 		} catch (error) {
 			trataErro(error);
 		}
 	}
 
-	static async  econtraCategoriaPeloId(id) {
+	static async econtraCategoriaPeloId(id) {
 		try {
 			let idDaCategoriaDesejada = id;
 			const response = await fetch("http://localhost:3000/categories");
