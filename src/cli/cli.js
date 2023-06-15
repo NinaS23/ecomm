@@ -37,14 +37,14 @@ async function processarComandos(args) {
 		break;
 	case "--atualizarCategoria":
 		try {
-			await categoryService.atualizaCategoria();
+			await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal);
 		} catch (error) {
 			console.log(error);
 		}
 		break;
 	case "--excluirCategoria":
 		try {
-			await categoryService.deletarCategoria();
+			await categoryService.deletarCategoria(pegarIdDaCategoriaPeloTerminal);
 		} catch (error) {
 			console.log(error);
 		}

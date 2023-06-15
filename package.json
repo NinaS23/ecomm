@@ -10,8 +10,8 @@
         "listarCategorias": "node ./src/cli/cli.js --listarCategorias",
         "listarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId 9",
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
-        "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria",
-        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria",
+        "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria 7",
+        "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria 8",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"
     },

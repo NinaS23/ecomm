@@ -84,8 +84,9 @@ async function criarCategoria() {
 		});
 }
 
-async function atualizaCategoria() {
+async function atualizaCategoria(idDaCategoria) {
 	let statusCode;
+	let categoriaId = idDaCategoria;
 	const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json";
 	const encoding = "utf-8";
 	const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
@@ -97,7 +98,7 @@ async function atualizaCategoria() {
 		headers: headers,
 		body: atualizarData
 	};
-	fetch("http://localhost:3000/categories/7", requestOptions)
+	fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
 		.then((response) => {
 			console.log("response status:" + " " + chalk.green(response.status));
 			statusCode = response.status;
@@ -113,8 +114,9 @@ async function atualizaCategoria() {
 		});
 }
 
-async function deletarCategoria() {
+async function deletarCategoria(idDaCategoria) {
 	let statusCode;
+	let categoriaId = idDaCategoria;
 	const headers = {
 		"Content-Type": "application/json"
 	};
@@ -122,7 +124,7 @@ async function deletarCategoria() {
 		method: "DELETE",
 		headers: headers,
 	};
-	fetch("http://localhost:3000/categories/8", requestOptions)
+	fetch(`http://localhost:3000/categories/${categoriaId}`, requestOptions)
 		.then((response) => {
 			console.log("response status:" + " " + chalk.green(response.status));
 			statusCode = response.status;
