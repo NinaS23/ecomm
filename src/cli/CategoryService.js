@@ -9,7 +9,7 @@ function trataErro(error) {
 function renderizaStatus(statusCode, method) {
 	try {
 		if (statusCode === 200 && method === "get") {
-			console.log(chalk.bgMagentaBright("listando categorias..."));
+			console.log(chalk.bgMagentaBright("Sucesso!!"));
 			console.log("response status:" + " " + chalk.green(statusCode));
 		} else if (statusCode === 404) {
 			console.log("response status:" + " " + chalk.red(statusCode));
