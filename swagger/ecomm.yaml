@@ -491,6 +491,8 @@ components:
             estado:
               type: string
               description: Estado do endereço
+            uf:
+              type: string
     Pedido:
       type: object
       properties:
