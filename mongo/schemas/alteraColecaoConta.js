@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-undef */
 use("ecomm");
 
@@ -46,7 +47,7 @@ db.runCommand({
 				},
 				telefone: {
 					bsonType: "number",
-					pattern:"^[0-9]{11}$",
+					pattern: "^[0-9]{11}$",
 					description: "Telefone com no mínimo 10 caracteres."
 				},
 				endereco: {
@@ -72,9 +73,8 @@ db.runCommand({
 							description: "Rua com no mínimo 1 caractere."
 						},
 						numero: {
-							bsonType: ["number","string"],
-							// eslint-disable-next-line no-useless-escape
-							pattern: "^\d{1}|[S/N]",
+							bsonType: ["number", "string"],
+							pattern: "^\\d{1}|[S/N]$",
 							description: "Número com no mínimo 1 caractere."
 						},
 						complemento: {
@@ -93,34 +93,34 @@ db.runCommand({
 						},
 						uf: {
 							bsonType: "string",
-							"enum": [
-								"AC",
-								"AL",
-								"AM",
-								"AP",
-								"BA",
-								"CE",
-								"DF",
-								"ES",
-								"GO",
-								"MA",
-								"MG",
-								"MS",
-								"MT",
-								"PA",
-								"PB",
-								"PE",
-								"PI",
-								"PR",
-								"RJ",
-								"RN",
-								"RO",
-								"RR",
-								"RS",
-								"SC",
-								"SE",
-								"SP",
-								"TO"
+							'enum': [
+								'AC',
+								'AL',
+								'AM',
+								'AP',
+								'BA',
+								'CE',
+								'DF',
+								'ES',
+								'GO',
+								'MA',
+								'MG',
+								'MS',
+								'MT',
+								'PA',
+								'PB',
+								'PE',
+								'PI',
+								'PR',
+								'RJ',
+								'RN',
+								'RO',
+								'RR',
+								'RS',
+								'SC',
+								'SE',
+								'SP',
+								'TO'
 							],
 							description: "UF com exatamente 2 caracteres."
 						}
@@ -131,5 +131,4 @@ db.runCommand({
 	},
 	validationLevel: "strict",
 	validationAction: "error"
-
 });
