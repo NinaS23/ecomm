@@ -172,7 +172,7 @@ paths:
           content:
             application/json:
               example: Not Found
-  /api/produtos:
+  /products/limits:
     parameters:
       - name: faixa_preco
         in: query
