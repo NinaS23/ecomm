@@ -172,6 +172,34 @@ paths:
           content:
             application/json:
               example: Not Found
+  /api/produtos:
+    parameters:
+      - name: faixa_preco
+        in: query
+        description: Faixa de preço (mínimo e máximo separados por vírgula)
+        required: false
+        type: string
+      - name: categoria_id
+        in: query
+        description: ID da categoria
+        required: false
+        type: integer
+      - name: estoque_minimo
+        in: query
+        description: Valor mínimo de estoque
+        required: false
+        type: integer
+    get:
+      summary: Listar produtos com base em critérios específicos
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+          items:
+            $ref: "#/definitions/Produto"
   /products/{id}:
     get:
       summary: Detalhar um produto pelo ID
