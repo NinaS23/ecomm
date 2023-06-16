@@ -521,6 +521,8 @@ components:
             estado:
               type: string
               description: Estado do endereço de entrega
+            uf:
+              type: string
         itens:
           type: array
           description: Lista de itens do pedido
