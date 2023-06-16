@@ -9,7 +9,7 @@ paths:
   /categories:
     get:
       tags:
-      - categories
+      - categorias
       summary: Lista de categorias
       responses:
          200:
@@ -19,7 +19,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Category'
+                  $ref: '#/components/schemas/Categoria'
          404:
           description: Categoria não encontrada
           content:
@@ -36,7 +36,7 @@ paths:
     get:
       summary: Recupera uma Categoria pelo ID
       tags:
-      - categories
+      - categorias
       responses:
          200:
           description: Sucesso
@@ -45,7 +45,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Category'
+                  $ref: '#/components/schemas/Categoria'
          404:
           description: Categoria não encontrada
           content:
@@ -55,7 +55,7 @@ paths:
     post:
       summary: Cria nova Categoria
       tags:
-      - categories
+      - categorias
       security:
         - auth: []   
       requestBody:
@@ -72,7 +72,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Category'
+                $ref: '#/components/schemas/Categoria'
   /admin/categories/{id}:
     parameters:
       - name: id
@@ -83,7 +83,7 @@ paths:
     get:
       summary: Altera uma Categoria pelo ID
       tags:
-      - categories
+      - categorias
       security:
         - auth: []
       responses:
@@ -92,7 +92,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Category'
+                $ref: '#/components/schemas/Categoria'
          404:
           description: Categoria não encontrada
           content:
@@ -102,7 +102,7 @@ paths:
       summary: Deleta uma categoria pelo ID
       description: Delata uma categoria pelo ID
       tags:
-      - categories
+      - categorias
       security:
         - auth: []
       responses:
@@ -116,7 +116,7 @@ paths:
       summary: Ativar uma categoria
       description: Ativa uma categoria específica pelo ID
       tags:
-      - categories
+      - categorias
       security:
         - auth: []
       parameters:
@@ -137,7 +137,7 @@ paths:
       summary: Cria um produto 
       description: Atualiza um produto 
       tags:
-      - products
+      - produtos
       security:
         - auth: []
       requestBody:
@@ -146,7 +146,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/Produto'
       responses:
          201:
           description: Produto inserido com sucesso
@@ -157,7 +157,7 @@ paths:
       summary: Listar produtos existentes
       description: Retorna a lista de produtos 
       tags:
-      - products
+      - produtos
       responses:
          200:
           description: Lista de produtos retornada com sucesso
@@ -166,7 +166,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/components/schemas/Produto'
          404:
           description: Categoria não encontrada
           content:
@@ -177,7 +177,7 @@ paths:
       summary: Detalhar um produto pelo ID
       description: Retorna os detalhes de um produto específico pelo ID
       tags:
-      - products
+      - produtos
       parameters:
         - in: path
           name: id
@@ -191,7 +191,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/Produto'
          404:
           description: Produto não encontrado      
   /admin/products/{id}:
@@ -199,7 +199,7 @@ paths:
       summary: Remover um produto
       description: Remove um produto específico pelo ID
       tags:
-      - products
+      - produtos
       security:
        - auth: []
       parameters:
@@ -218,7 +218,7 @@ paths:
       summary: Atualiza um produto
       description: Atualiza um produto| pelo ID
       tags:
-      - products
+      - produtos
       security:
         - auth: []
       parameters:
@@ -234,7 +234,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/Produto'
       responses:
          200:
           description: Produto atualizado com sucesso
@@ -245,7 +245,7 @@ paths:
       summary: Inserir um novo usuário
       description: Insere um novo usuário dentro do sistema
       tags:
-      - users
+      - usuarios
       security:
        - auth: []
       requestBody:
@@ -254,7 +254,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Usuario'
       responses:
          201:
           description: Usuário inserido com sucesso
@@ -266,7 +266,7 @@ paths:
       security:
        - auth: []
       tags:
-      - users
+      - usuarios
       responses:
          200:
           description: Lista de usuários retornada com sucesso
@@ -275,13 +275,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/components/schemas/Usuario'
   /users/{id}:
     get:
       summary: Detalhar um usuário pelo ID
       description: Retorna os detalhes de um usuário específico pelo ID
       tags:
-      - users
+      - usuarios
       parameters:
         - in: path
           name: id
@@ -295,7 +295,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Usuario'
          404:
           description: Usuário não encontrado
   /admin/users/{id}:
@@ -305,7 +305,7 @@ paths:
       security:
        - auth: []
       tags:
-      - users
+      - usuarios
       parameters:
         - in: path
           name: id
@@ -319,7 +319,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Usuario'
       responses:
          200:
           description: Usuário alterado com sucesso
@@ -333,7 +333,7 @@ paths:
       security:
        - auth: []
       tags:
-      - users
+      - usuarios
       parameters:
         - in: path
           name: id
@@ -351,14 +351,14 @@ paths:
       summary: Realizar um novo pedido
       description: Realiza um novo pedido
       tags:
-      - orders
+      - pedidos
       requestBody:
         description: Dados do novo pedido
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
+              $ref: '#/components/schemas/Pedido'
       responses:
          201:
           description: Pedido realizado com sucesso
@@ -367,7 +367,7 @@ paths:
       summary: Detalhar um pedido pelo ID
       description: Retorna os detalhes de um pedido específico pelo ID
       tags:
-      - orders
+      - pedidos
       parameters:
         - in: path
           name: id
@@ -381,12 +381,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/Pedido'
          404:
           description: Pedido não encontrado
 components:
   schemas:
-    Category:
+    Categoria:
       type: object
       properties:
         id:
@@ -395,7 +395,7 @@ components:
           type: string
         status:
           type: string
-    Product:
+    Produto:
       type: object
       properties:
         id:
@@ -416,7 +416,10 @@ components:
         quantidade_estoque:
           type: integer
           description: Tipo
-    User:
+        Categoria: 
+          $ref: "#/components/schemas/Categoria"
+
+    Usuario:
       type: object
       properties:
         nome:
@@ -458,7 +461,7 @@ components:
             estado:
               type: string
               description: Estado do endereço
-    Order:
+    Pedido:
       type: object
       properties:
         id_cliente:
@@ -490,8 +493,8 @@ components:
           type: array
           description: Lista de itens do pedido
           items:
-            $ref: '#/components/schemas/OrderItens'
-    OrderItens:
+            $ref: '#/components/schemas/ItensDoPedido'
+    ItensDoPedido:
       type: object
       properties:
         id_produto:
