@@ -81,7 +81,7 @@ paths:
           type: integer
         required: true
     get:
-      summary: Altera uma Categoria pelo ID
+      summary: Pega uma Categoria pelo ID
       tags:
       - categorias
       security:

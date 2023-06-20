@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 /* eslint-disable no-undef */
 use("ecomm");
 
@@ -9,16 +10,16 @@ db.createCollection("orders", {
 				"dataPedido",
 				"enderecoEntrega",
 				"account",
-				"itens"
+				"itens",
 			],
 			properties: {
 				_id: {
 					description: "Um identificador unico para cada pedido",
-					bsonType: "objectId"
+					bsonType: "objectId",
 				},
 				dataPedido: {
 					bsonType: "date",
-					description: "data em que o pedido foi gerado."
+					description: "data em que o pedido foi gerado.",
 				},
 				enderecoEntrega: {
 					bsonType: "object",
@@ -29,64 +30,64 @@ db.createCollection("orders", {
 						"complemento",
 						"cep",
 						"cidade",
-						"uf"
+						"uf",
 					],
 					additionalProperties: false,
 					properties: {
 						bairro: {
 							bsonType: "string",
 							minLength: 1,
-							description: "Bairro com no mínimo 1 caractere."
+							description: "Bairro com no mínimo 1 caractere.",
 						},
 						rua: {
 							bsonType: "string",
 							minLength: 1,
-							description: "Rua com no mínimo 1 caractere."
+							description: "Rua com no mínimo 1 caractere.",
 						},
 						numero: {
 							bsonType: "string",
 							minLength: 1,
-							description: "Número com no mínimo 1 caractere."
+							description: "Número com no mínimo 1 caractere.",
 						},
 						complemento: {
 							bsonType: "string",
-							description: "Complemento do endereço."
+							description: "Complemento do endereço.",
 						},
 						cep: {
 							bsonType: "string",
 							pattern: "^[0-9]{8}$",
-							description: "CEP com exatamente 8 caracteres."
+							description: "CEP com exatamente 8 caracteres.",
 						},
 						cidade: {
 							bsonType: "string",
 							minLength: 5,
-							description: "Cidade com no mínimo 5 caracteres."
+							description: "Cidade com no mínimo 5 caracteres.",
 						},
 						uf: {
 							bsonType: "string",
 							pattern: "^[A-Z]{2}$",
-							description: "UF com exatamente 2 caracteres."
-						}
-					}
+							description: "UF com exatamente 2 caracteres.",
+						},
+					},
 				},
 				account: {
 					bsonType: "object",
 					required: [
 						"accountId",
-						"cliente"
+						"cliente",
 					],
 					additionalProperties: false,
 					properties: {
 						accountId: {
 							bsonType: "objectId",
-							description: "Id da conta do cliente."
+							description: "Id da conta do cliente.",
 						},
 						cliente: {
 							bsonType: "string",
 							minLength: 1,
-							description: "Nome do cliente."
-						}
-					}
+							description: "Nome do cliente.",
+						},
+					},
 				},
 				itens: {
 					bsonType: "array",
@@ -100,32 +101,32 @@ db.createCollection("orders", {
 						],
 						additionalProperties: false,
 						properties: {
-							"productId": {
+							productId: {
 								bsonType: "objectId",
-								description: "Id do produto."
+								description: "Id do produto.",
 							},
 							quantidade: {
 								bsonType: "int",
 								minimum: 0,
 								exclusiveMinimum: true,
-								description: "No mínimo 1 item."
+								description: "No mínimo 1 item.",
 							},
 							precoUnitario: {
 								bsonType: "decimal",
 								minimum: 0.00,
 								exclusiveMinimum: true,
-								description: "Preço unitário."
+								description: "Preço unitário.",
 							},
-							"desconto": {
+							desconto: {
 								bsonType: "decimal",
 								minimum: 0.00,
 								exclusiveMinimum: true,
-								description: "Valor de desconto."
+								description: "Valor de desconto.",
 							},
-						}
-					}
-				}
-			}
-		}
-	}
+						},
+					},
+				},
+			},
+		},
+	},
 });

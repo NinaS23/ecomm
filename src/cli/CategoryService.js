@@ -1,3 +1,7 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-useless-concat */
+/* eslint-disable no-console */
+/* eslint-disable no-tabs */
 import chalk from "chalk";
 import fs from "fs";
 
@@ -10,18 +14,18 @@ function renderizaStatus(statusCode, method) {
 	try {
 		if (statusCode === 200 && method === "get") {
 			console.log(chalk.bgMagentaBright("Sucesso!!"));
-			console.log("response status:" + " " + chalk.green(statusCode));
+			console.log("response status:" + ` ${chalk.green(statusCode)}`);
 		} else if (statusCode === 404) {
-			console.log("response status:" + " " + chalk.red(statusCode));
+			console.log("response status:" + ` ${chalk.red(statusCode)}`);
 			console.log(chalk.red("categoria não encontrada"));
 		} else if (statusCode === 200 && method === "patch") {
 			console.log(chalk.bgMagentaBright("categoria atualizada com sucesso"));
-			console.log("response status:" + " " + chalk.green(statusCode));
+			console.log("response status:" + ` ${chalk.green(statusCode)}`);
 		} else if (statusCode === 201) {
-			console.log("response status:" + " " + chalk.green(statusCode));
+			console.log("response status:" + ` ${chalk.green(statusCode)}`);
 			console.log(chalk.bgMagentaBright("categoria criada com sucesso"));
 		} else if (statusCode === 200 && method === "delete") {
-			console.log("response status:" + " " + statusCode);
+			console.log("response status:" + ` ${statusCode}`);
 			console.log(chalk.bgMagentaBright("categoria delatada com sucesso"));
 		} else {
 			console.log(statusCode);
@@ -32,7 +36,6 @@ function renderizaStatus(statusCode, method) {
 	}
 }
 
-
 function renderizaDados(dados) {
 	console.log(dados);
 }
@@ -41,10 +44,9 @@ class categoryService {
 		try {
 			const response = await fetch(URL);
 			const categorias = await response.json();
-			let status = response.status;
-			renderizaStatus(status,"get");
+			const { status } = response;
+			renderizaStatus(status, "get");
 			renderizaDados(categorias);
-		
 		} catch (error) {
 			trataErro(error);
 		}
@@ -52,14 +54,14 @@ class categoryService {
 
 	static async econtraCategoriaPeloId(id) {
 		try {
-			let idDaCategoriaDesejada = id;
+			const idDaCategoriaDesejada = id;
 			const response = await fetch(URL);
 			const categorias = await response.json();
 			categorias.find((categoria) => {
 				if (categoria.id === idDaCategoriaDesejada) renderizaDados(categoria);
 			});
-			let status = response.status;
-			renderizaStatus(status,"get");
+			const { status } = response;
+			renderizaStatus(status, "get");
 		} catch (error) {
 			trataErro(error);
 		}
@@ -71,41 +73,40 @@ class categoryService {
 			const encoding = "utf-8";
 			const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
 			const headers = {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			};
-			let requestOptions = {
+			const requestOptions = {
 				method: "POST",
-				headers: headers,
-				body: categoria
+				headers,
+				body: categoria,
 			};
 			const response = await fetch(URL, requestOptions);
 			const categoriaCriada = await response.json();
-			let status = response.status;
+			const { status } = response;
 			renderizaStatus(status);
 			renderizaDados(categoriaCriada);
 		} catch (error) {
 			trataErro(error);
 		}
-
 	}
 
 	static async atualizaCategoria(idDaCategoria) {
 		try {
-			let categoriaId = idDaCategoria;
+			const categoriaId = idDaCategoria;
 			const caminhoDaCategoriaNova = "./src/cli/categoriaAtualizada.json";
 			const encoding = "utf-8";
 			const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
 			const headers = {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			};
-			let requestOptions = {
+			const requestOptions = {
 				method: "PATCH",
-				headers: headers,
-				body: atualizarData
+				headers,
+				body: atualizarData,
 			};
 			const response = await fetch(`${URL}/${categoriaId}`, requestOptions);
 			const categoriaCriada = await response.json();
-			let status = response.status;
+			const { status } = response;
 			renderizaStatus(status, "patch");
 			renderizaDados(categoriaCriada);
 		} catch (error) {
@@ -115,17 +116,17 @@ class categoryService {
 
 	static async deletarCategoria(idDaCategoria) {
 		try {
-			let categoriaId = idDaCategoria;
+			const categoriaId = idDaCategoria;
 			const headers = {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			};
-			let requestOptions = {
+			const requestOptions = {
 				method: "DELETE",
-				headers: headers,
+				headers,
 			};
 			const response = await fetch(`${URL}/${categoriaId}`, requestOptions);
 			const categoriaCriada = await response.json();
-			let status = response.status;
+			const { status } = response;
 			renderizaStatus(status, "delete");
 			renderizaDados(categoriaCriada);
 		} catch (error) {
@@ -134,10 +135,4 @@ class categoryService {
 	}
 }
 
-
-
 export default categoryService;
-
-
-
-

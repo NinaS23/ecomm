@@ -1,18 +1,22 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
+/* eslint-disable no-console */
+/* eslint-disable no-tabs */
+// eslint-disable-next-line no-undef
 use("ecomm");
 
 const cliente = db.accounts.findOne({
-	nome_de_usuario: "Emilia Dos Santos"
+	nome_de_usuario: "Emilia Dos Santos",
 });
 
 const result = db.orders.aggregate([
 	{
 		$match: {
-			"account.accountId": cliente._id
-		}
+			"account.accountId": cliente._id,
+		},
 	},
 	{
-		$unwind: "$itens"
+		$unwind: "$itens",
 	},
 	{
 		$group: {
@@ -21,20 +25,19 @@ const result = db.orders.aggregate([
 			montanteTotalPedidos: {
 				$sum: {
 					$multiply: [
-						{ $toInt:"$itens.precoUnitario" },
-						"$itens.quantidade"
-					]
-				}
+						{ $toInt: "$itens.precoUnitario" },
+						"$itens.quantidade",
+					],
+				},
 			},
-			montanteTotalDesconto: { $sum: { $toInt: "$itens.desconto"  } }
-		}
+			montanteTotalDesconto: { $sum: { $toInt: "$itens.desconto" } },
+		},
 	},
 	{
 		$addFields: {
-			cliente: cliente.nome_de_usuario
-		}
-	}
+			cliente: cliente.nome_de_usuario,
+		},
+	},
 ]);
-
 
 console.log(result);

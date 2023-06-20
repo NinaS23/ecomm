@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 /* eslint-disable no-undef */
 use("ecomm");
 
@@ -10,28 +11,28 @@ db.createCollection("products", {
 			properties: {
 				_id: {
 					description: "Um identificador unico para cada produto",
-					bsonType: "objectId"
+					bsonType: "objectId",
 				},
 				nome: {
 					bsonType: "string",
-					minLength: 3
+					minLength: 3,
 				},
 				descrição: {
 					bsonType: "string",
-					minLength: 10
+					minLength: 10,
 				},
 				slug: {
 					bsonType: "string",
-					minLength: 5
+					minLength: 5,
 				},
 				estoque: {
 					bsonType: "int",
-					minimum: 0
+					minimum: 0,
 				},
-				"preco": {
+				preco: {
 					bsonType: "decimal",
 					minimum: 0.00,
-					exclusiveMinimum: true
+					exclusiveMinimum: true,
 				},
 				categoria: {
 					bsonType: "string",
@@ -40,9 +41,9 @@ db.createCollection("products", {
 						"CELULARES",
 						"INFORMÁTICA",
 						"LIVROS",
-						"MÓVEIS"
-					]
-				}
+						"MÓVEIS",
+					],
+				},
 			},
 			required: [
 				"nome",
@@ -50,9 +51,9 @@ db.createCollection("products", {
 				"slug",
 				"estoque",
 				"categoria",
-				"preco"
+				"preco",
 			],
-			additionalProperties: false
-		}
-	}
+			additionalProperties: false,
+		},
+	},
 });

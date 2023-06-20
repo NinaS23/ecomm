@@ -1,13 +1,16 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-shadow */
+/* eslint-disable default-case */
+/* eslint-disable no-tabs */
 import categoryService from "./CategoryService.js";
 
 const comando = process.argv;
 
 async function processarComandos(args) {
-	let comando = args[2];
-	let pegarIdDaCategoriaPeloTerminal = args[3] * 1;
-	
-	switch (comando) {
+	const comando = args[2];
+	const pegarIdDaCategoriaPeloTerminal = args[3] * 1;
 
+	switch (comando) {
 	case "--listarCategorias":
 		await categoryService.encontraCategorias();
 		break;
@@ -25,6 +28,5 @@ async function processarComandos(args) {
 		break;
 	}
 }
-
 
 processarComandos(comando);
