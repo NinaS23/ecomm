@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/extensions */
-
 import request from 'supertest';
 import app from '../../src/app.js';
 

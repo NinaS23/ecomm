@@ -23,11 +23,8 @@ class categoriasCrontroller {
       });
       console.log(categoria.nome);
       await categoria.save();
-      res.status(201).send('categoria cadastrada com sucesso!!');
+      res.status(201).send('Categoria cadastrada com sucesso!!');
     } catch (err) {
-      if (err.nome === undefined || err.status) {
-        res.status(400).send('nome e status são necessários');
-      }
       res.status(500).json(err);
     }
   }
