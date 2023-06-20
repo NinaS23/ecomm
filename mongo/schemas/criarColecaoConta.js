@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 use('ecomm');
 
 db.createCollection('accounts', {

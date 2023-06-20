@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 use('ecomm');
 
 const AllTheBooksWereSold = db.productes.updateMany(

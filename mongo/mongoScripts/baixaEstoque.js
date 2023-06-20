@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 use('ecomm');
 const produtoModificado = db.products.updateOne(
   { nome: 'Galaxy Tab S8' },

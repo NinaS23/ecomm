@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 use('ecomm');
 
 const orderDate = new Date();

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 use('ecomm');
 
 const criationDate = new Date();

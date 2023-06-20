@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-
 import mongoose from 'mongoose';
 
 const categoriasSchema = new mongoose.Schema(

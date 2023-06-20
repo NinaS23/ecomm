@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable import/extensions */
 /* eslint-disable no-tabs */
 import express from 'express';

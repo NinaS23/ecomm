@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 use('ecomm');
 
 const categoriesActive = db.categories.updateOne(

@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs */
-/* eslint-disable no-undef */
+
 use('ecomm');
 
 db.createCollection('orders', {

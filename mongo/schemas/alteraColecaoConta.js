@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
 
 use('ecomm');

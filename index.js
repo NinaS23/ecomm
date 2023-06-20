@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable linebreak-style */
 /* eslint-disable import/extensions */
 
 import dotenv from 'dotenv';
