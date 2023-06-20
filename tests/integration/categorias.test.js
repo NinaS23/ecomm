@@ -71,7 +71,7 @@ describe('GET em api/categories/{id}', () => {
       .expect(404);
   });
 
-  describe('test rota /api/admin/categories/:id', () => {
+  describe('test rota PATCH /api/admin/categories/:id', () => {
     it('ativa a categorias', async () => {
       const pegarTodasAsCategorias = await request(app)
         .get('/api/categories')
@@ -98,7 +98,21 @@ describe('GET em api/categories/{id}', () => {
         .expect(409);
     });
   });
-
+  describe('test rota PUT /api/admin/categories/:id', () => {
+    it('Atualiza o nome da categorias', async () => {
+      const pegarTodasAsCategorias = await request(app)
+        .get('/api/categories')
+        .set('Accept', 'application/json')
+        .expect('content-type', /json/)
+        .expect(200);
+      const posicaoDaCategoria = pegarTodasAsCategorias.body.length - 1;
+      const idDaCategoria = pegarTodasAsCategorias.body[posicaoDaCategoria]._id;
+      await request(app)
+        .put(`/api/admin/categories/${idDaCategoria}`)
+        .send({ nome: 'FERRAMENTAS' })
+        .expect(200);
+    });
+  });
   describe('test rota Delete api/categories', () => {
     it('deleta a categorias', async () => {
       const pegarTodasAsCategorias = await request(app)
