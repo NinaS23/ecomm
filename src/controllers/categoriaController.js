@@ -8,7 +8,11 @@ class categoriasCrontroller {
   static async listarCategorias(_, res) {
     try {
       const listaDeCategorias = await categorias.find();
-      res.status(200).json(listaDeCategorias);
+      if (listaDeCategorias.length < 1) {
+        res.sendStatus(204);
+      } else {
+        res.status(200).json(listaDeCategorias);
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -22,8 +26,12 @@ class categoriasCrontroller {
         status: req.body.status,
       });
       console.log(categoria.nome);
-      await categoria.save();
-      res.status(201).send('Categoria cadastrada com sucesso!!');
+      if (categoria.nome === '' || categoria.status === '') {
+        res.status(404).send('Nome e Status são necessários!!');
+      } else {
+        await categoria.save();
+        res.status(201).send('Categoria cadastrada com sucesso!!');
+      }
     } catch (err) {
       res.status(500).json(err);
     }
@@ -34,8 +42,13 @@ class categoriasCrontroller {
       const { id } = req.params;
       const categoriaEncontrada = await categorias.findById(id)
         .exec();
-      res.status(200).send(categoriaEncontrada);
+      if (categoriaEncontrada == null) {
+        res.status(404).send('categoria não encontrada');
+      } else {
+        res.status(200).json(categoriaEncontrada);
+      }
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   }
@@ -58,8 +71,14 @@ class categoriasCrontroller {
   static async deletaCategoria(req, res) {
     try {
       const { id } = req.params;
-      await categorias.deleteOne({ _id: id });
-      res.status(200).send('Categoria deletada com sucesso!!');
+      const categoriaEncontrada = await categorias.findById(id)
+        .exec();
+      if (categoriaEncontrada == null) {
+        res.status(404).send('categoria não encontrada');
+      } else {
+        await categorias.deleteOne({ _id: id });
+        res.status(200).send('Categoria deletada com sucesso!!');
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -69,11 +88,19 @@ class categoriasCrontroller {
   static async ativarCategoria(req, res) {
     try {
       const { id } = req.params;
-      await categorias.updateOne(
-        { _id: id },
-        { $set: { status: 'ATIVA' } },
-      );
-      res.status(200).send('Categoria ativada com sucesso!!');
+      const categoriaEncontrada = await categorias.findById(id)
+        .exec();
+      if (categoriaEncontrada == null) {
+        res.status(404).send('categoria não encontrada');
+      } else if (categoriaEncontrada.status === 'ATIVA') {
+        res.status(409).send('categoria já está ativada');
+      } else {
+        await categorias.updateOne(
+          { _id: id },
+          { $set: { status: 'ATIVA' } },
+        );
+        res.status(200).send('Categoria ativada com sucesso!!');
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
