@@ -6,8 +6,8 @@ import categoriasCrontroller from '../controllers/categoriaController.js';
 const CategoriaRouter = express.Router();
 
 CategoriaRouter
-  .get('/categories', categoriasCrontroller.listarCategorias)
-  .post('/admin/categories', categoriasCrontroller.cadastrarCategoria)
-  .get('/categories/:id', categoriasCrontroller.listarLivroPorId);
+  .get('/api/categories', categoriasCrontroller.listarCategorias)
+  .post('/api/admin/categories', categoriasCrontroller.cadastrarCategoria)
+  .get('/api/categories/:id', categoriasCrontroller.listarLivroPorId);
 
 export default CategoriaRouter;

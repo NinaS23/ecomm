@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable new-cap */
 /* eslint-disable import/extensions */
 
@@ -20,11 +21,13 @@ class categoriasCrontroller {
         nome: req.body.nome,
         status: req.body.status,
       });
-      console.log(categoria);
+      console.log(categoria.nome);
       await categoria.save();
       res.status(201).send('categoria cadastrada com sucesso!!');
     } catch (err) {
-      console.log(err);
+      if (err.nome === undefined || err.status) {
+        res.status(400).send('nome e status são necessários');
+      }
       res.status(500).json(err);
     }
   }
