@@ -29,13 +29,53 @@ class categoriasCrontroller {
     }
   }
 
-  static async listarLivroPorId(req, res) {
+  static async listarCategoriaPeloId(req, res) {
     try {
       const { id } = req.params;
       const categoriaEncontrada = await categorias.findById(id)
         .exec();
       res.status(200).send(categoriaEncontrada);
     } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+
+  static async atualizarCategoria(req, res) {
+    try {
+      const { id } = req.params;
+      const dados = req.body;
+      await categorias.updateOne(
+        { _id: id },
+        { $set: { nome: dados.nome } },
+      );
+      res.status(200).send('Categoria modificada com sucesso!!');
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+
+  static async deletaCategoria(req, res) {
+    try {
+      const { id } = req.params;
+      await categorias.deleteOne({ _id: id });
+      res.status(200).send('Categoria deletada com sucesso!!');
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+
+  static async ativarCategoria(req, res) {
+    try {
+      const { id } = req.params;
+      await categorias.updateOne(
+        { _id: id },
+        { $set: { status: 'ATIVA' } },
+      );
+      res.status(200).send('Categoria ativada com sucesso!!');
+    } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   }
