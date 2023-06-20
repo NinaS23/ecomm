@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-useless-concat */
-/* eslint-disable no-console */
 import chalk from 'chalk';
 import fs from 'fs';
 
