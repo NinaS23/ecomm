@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
-use("ecomm");
+use('ecomm');
 
 const createdIndexName = db.products.createIndex({ nome: 1 });
 const createdIndexCategory = db.products.createIndex({ categoria: 1 });

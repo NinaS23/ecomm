@@ -1,13 +1,10 @@
 /* eslint-disable no-console */
-/* eslint-disable no-tabs */
-// eslint-disable-next-line no-undef
-use("ecomm");
-
-// eslint-disable-next-line no-undef
+/* eslint-disable no-undef */
+use('ecomm');
 const produtoModificado = db.products.updateOne(
-	{ nome: "Galaxy Tab S8" },
-	{ gte: 2 },
-	{ $inc: { estoque: -2 } },
+  { nome: 'Galaxy Tab S8' },
+  { gte: 2 },
+  { $inc: { estoque: -2 } },
 );
 
 console.log(produtoModificado);

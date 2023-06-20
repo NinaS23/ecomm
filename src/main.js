@@ -1,2 +1,2 @@
 /* eslint-disable no-console */
-console.log("Iniciando ecomm");
+console.log('Iniciando ecomm');
