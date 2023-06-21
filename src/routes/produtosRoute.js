@@ -6,5 +6,6 @@ import ProdutosController from '../controllers/produtosController.js';
 const produtosRoute = express.Router();
 
 produtosRoute
-  .get('/api/products', ProdutosController.listarProdutos);
+  .get('/api/products', ProdutosController.listarProdutos)
+  .post('/api/admin/products/', ProdutosController.inserirProduto);
 export default produtosRoute;

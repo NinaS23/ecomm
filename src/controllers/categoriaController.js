@@ -2,12 +2,12 @@
 /* eslint-disable new-cap */
 /* eslint-disable import/extensions */
 
-import categorias from '../models/categoriasModel.js';
+import Categorias from '../models/categoriasModel.js';
 
 class categoriasCrontroller {
   static async listarCategorias(_, res) {
     try {
-      const listaDeCategorias = await categorias.find();
+      const listaDeCategorias = await Categorias.find();
       if (listaDeCategorias.length < 1) {
         res.sendStatus(204);
       } else {
@@ -21,11 +21,10 @@ class categoriasCrontroller {
 
   static async cadastrarCategoria(req, res) {
     try {
-      const categoria = new categorias({
+      const categoria = new Categorias({
         nome: req.body.nome,
         status: req.body.status,
       });
-      console.log(categoria.nome);
       if (categoria.nome === '' || categoria.status === '') {
         res.status(404).send('Nome e Status são necessários!!');
       } else {
@@ -40,7 +39,7 @@ class categoriasCrontroller {
   static async listarCategoriaPeloId(req, res) {
     try {
       const { id } = req.params;
-      const categoriaEncontrada = await categorias.findById(id)
+      const categoriaEncontrada = await Categorias.findById(id)
         .exec();
       if (categoriaEncontrada == null) {
         res.status(404).send('categoria não encontrada');
@@ -57,7 +56,7 @@ class categoriasCrontroller {
     try {
       const { id } = req.params;
       const dados = req.body;
-      await categorias.updateOne(
+      await Categorias.updateOne(
         { _id: id },
         { $set: { nome: dados.nome } },
       );
@@ -71,12 +70,12 @@ class categoriasCrontroller {
   static async deletaCategoria(req, res) {
     try {
       const { id } = req.params;
-      const categoriaEncontrada = await categorias.findById(id)
+      const categoriaEncontrada = await Categorias.findById(id)
         .exec();
       if (categoriaEncontrada == null) {
         res.status(404).send('categoria não encontrada');
       } else {
-        await categorias.deleteOne({ _id: id });
+        await Categorias.deleteOne({ _id: id });
         res.status(200).send('Categoria deletada com sucesso!!');
       }
     } catch (err) {
@@ -88,14 +87,14 @@ class categoriasCrontroller {
   static async ativarCategoria(req, res) {
     try {
       const { id } = req.params;
-      const categoriaEncontrada = await categorias.findById(id)
+      const categoriaEncontrada = await Categorias.findById(id)
         .exec();
       if (categoriaEncontrada == null) {
         res.status(404).send('categoria não encontrada');
       } else if (categoriaEncontrada.status === 'ATIVA') {
         res.status(409).send('categoria já está ativada');
       } else {
-        await categorias.updateOne(
+        await Categorias.updateOne(
           { _id: id },
           { $set: { status: 'ATIVA' } },
         );
