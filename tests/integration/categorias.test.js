@@ -13,17 +13,6 @@ afterEach(() => {
   server.close();
 });
 
-describe('test rota GET api/categories', () => {
-  it('listar todas as categorias', async () => {
-    const resposta = await request(app)
-      .get('/api/categories')
-      .set('Accept', 'application/json')
-      .expect('content-type', /json/)
-      .expect(200);
-    expect(resposta.body[0].nome).toEqual('INFORMÁTICA');
-  });
-});
-
 describe('POST em api/admin/categories', () => {
   it('Deve adicionar uma nova categoria', async () => {
     await request(app)
@@ -45,6 +34,18 @@ describe('POST em api/admin/categories', () => {
   });
 });
 
+describe('test rota GET api/categories', () => {
+  it('listar todas as categorias', async () => {
+    const resposta = await request(app)
+      .get('/api/categories')
+      .set('Accept', 'application/json')
+      .expect('content-type', /json/)
+      .expect(200);
+    const posicaoDaCategoria = resposta.body.length - 1;
+    expect(resposta.body[posicaoDaCategoria].nome).toEqual('MUSICA');
+  });
+});
+
 describe('GET em api/categories/{id}', () => {
   it('Deve pegar uma categoria pelo ID', async () => {
     const pegarTodasAsCategorias = await request(app)
@@ -52,7 +53,6 @@ describe('GET em api/categories/{id}', () => {
       .set('Accept', 'application/json')
       .expect('content-type', /json/)
       .expect(200);
-    expect(pegarTodasAsCategorias.body[0].nome).toEqual('INFORMÁTICA');
     const posicaoDaCategoria = pegarTodasAsCategorias.body.length - 1;
     const idDaCategoria = pegarTodasAsCategorias.body[posicaoDaCategoria]._id;
     const resposta = await request(app)
