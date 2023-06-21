@@ -244,7 +244,7 @@ paths:
           description: Produto removido com sucesso
          401:
           description: Não autorizado - somente administradores podem executar esta ação
-    patch:
+    put:
       summary: Atualiza um produto
       description: Atualiza um produto| pelo ID
       tags:

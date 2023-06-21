@@ -7,5 +7,8 @@ const produtosRoute = express.Router();
 
 produtosRoute
   .get('/api/products', ProdutosController.listarProdutos)
-  .post('/api/admin/products/', ProdutosController.inserirProduto);
+  .post('/api/admin/products/', ProdutosController.inserirProduto)
+  .get('/api/admin/products/:id', ProdutosController.detalharProduto)
+  .put('/api/admin/products/:id', ProdutosController.atualizaProduto)
+  .delete('/api/admin/products/:id', ProdutosController.deletarProduto);
 export default produtosRoute;
