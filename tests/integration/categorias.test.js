@@ -80,7 +80,7 @@ describe('GET em api/categories/{id}', () => {
         .expect(200);
       const posicaoDaCategoria = pegarTodasAsCategorias.body.length - 1;
       const idDaCategoria = pegarTodasAsCategorias.body[posicaoDaCategoria]._id;
-      console.log(idDaCategoria);
+
       await request(app)
         .patch(`/api/admin/categories/${idDaCategoria}`)
         .expect(200);
