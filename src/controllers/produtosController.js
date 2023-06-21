@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import Produtos from '../models/produtosModel.js';
+import Categorias from '../models/categoriasModel.js';
 
 class ProdutosController {
   static async listarProdutos(_, res) {
@@ -27,8 +28,13 @@ class ProdutosController {
         estoque: req.body.estoque,
         categoria: req.body.categoria,
       });
-      await produto.save();
-      res.status(201).json('Produto inserido com sucesso!!');
+      const verificarSeCategoriaExiste = await Categorias.findById(produto.categoria);
+      if (verificarSeCategoriaExiste === null) {
+        res.status(404).json('Categoria escolhida não existe!');
+      } else {
+        await produto.save();
+        res.status(201).json('Produto inserido com sucesso!!');
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

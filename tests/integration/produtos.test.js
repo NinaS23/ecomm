@@ -34,6 +34,18 @@ describe('POST em /api/admin/products/', () => {
       })
       .expect(201);
   });
+  it('Não Deve adicionar um novo Produto, categoria inválida', async () => {
+    await request(app)
+      .post('/api/admin/products/')
+      .send({
+        nome: 'Casinha de Cachorro',
+        slug: 'casinha de cachorro, pro seu doguinho tirar o melhor cochilo',
+        preco_unitario: 550,
+        estoque: 3,
+        categoria: '38490324809234802',
+      })
+      .expect(404);
+  });
 });
 
 describe('test rota GET /api/products', () => {
