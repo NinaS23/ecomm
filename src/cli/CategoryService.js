@@ -65,9 +65,8 @@ class categoryService {
     }
   }
 
-  static async criarCategoria() {
+  static async criarCategoria(caminhoDaCategoriaNova) {
     try {
-      const caminhoDaCategoriaNova = './src/cli/novaCategoria.json';
       const encoding = 'utf-8';
       const categoria = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
       const headers = {
@@ -88,12 +87,11 @@ class categoryService {
     }
   }
 
-  static async atualizaCategoria(idDaCategoria) {
+  static async atualizaCategoria(idDaCategoria,caminhoParaCategoriaAtualizada) {
     try {
       const categoriaId = idDaCategoria;
-      const caminhoDaCategoriaNova = './src/cli/categoriaAtualizada.json';
       const encoding = 'utf-8';
-      const atualizarData = await fs.promises.readFile(caminhoDaCategoriaNova, encoding);
+      const atualizarData = await fs.promises.readFile(caminhoParaCategoriaAtualizada, encoding);
       const headers = {
         'Content-Type': 'application/json',
       };
