@@ -11,7 +11,7 @@
         "inserirCategoria": "node ./src/cli/cli.js --inserirCategoria",
         "atualizarCategoria": "node ./src/cli/cli.js --atualizarCategoria 7 ./src/cli/categoriaAtualizada.json",
         "excluirCategoria": "node ./src/cli/cli.js --excluirCategoria 10",
-        "criarCategoria": "'node ./src/cli/cli.js  --inserirCategoria ./src/cli/novaCategoria.json'"
+        "criarCategoria": "'node ./src/cli/cli.js  --inserirCategoria ./src/cli/novaCategoria.json'",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "dev": "nodemon ./src/index.js",
