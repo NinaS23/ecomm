@@ -6,7 +6,7 @@ import app from '../../src/app.js';
 
 let server;
 beforeEach(() => {
-  const port = 6003;
+  const port = 6000;
   server = app.listen(port);
 });
 afterEach(() => {

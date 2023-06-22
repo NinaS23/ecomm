@@ -9,7 +9,7 @@ services:
     depends_on:
       - mongo-ecomm
     environment:
-      - MONGO_HOST=${MONGO_HOST:-127.0.0.1}
+      MONGO_HOST: mongo-ecomm
   mongo-ecomm:
     image: mongo
     container_name: mongo-ecomm
