@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable default-case */
@@ -32,3 +33,4 @@ async function processarComandos(args) {
 }
 
 processarComandos(comando);
+
