@@ -1,5 +1,7 @@
 FROM node:18
 WORKDIR /app-ecomm
-COPY . .
+COPY package*.json ./
 RUN npm install
-ENTRYPOINT npm start
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
