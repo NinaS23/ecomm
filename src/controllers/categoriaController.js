@@ -67,23 +67,6 @@ class categoriasCrontroller {
     }
   }
 
-  static async deletaCategoria(req, res) {
-    try {
-      const { id } = req.params;
-      const categoriaEncontrada = await Categorias.findById(id)
-        .exec();
-      if (categoriaEncontrada == null) {
-        res.status(404).send('categoria não encontrada');
-      } else {
-        await Categorias.deleteOne({ _id: id });
-        res.status(200).send('Categoria deletada com sucesso!!');
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  }
-
   static async ativarCategoria(req, res) {
     try {
       const { id } = req.params;
@@ -99,6 +82,23 @@ class categoriasCrontroller {
           { $set: { status: 'ATIVA' } },
         );
         res.status(200).send('Categoria ativada com sucesso!!');
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+
+  static async deletaCategoria(req, res) {
+    try {
+      const { id } = req.params;
+      const categoriaEncontrada = await Categorias.findById(id)
+        .exec();
+      if (categoriaEncontrada == null) {
+        res.status(404).send('categoria não encontrada');
+      } else {
+        await Categorias.deleteOne({ _id: id });
+        res.status(200).send('Categoria deletada com sucesso!!');
       }
     } catch (err) {
       console.log(err);
