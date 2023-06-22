@@ -87,7 +87,7 @@ class categoryService {
     }
   }
 
-  static async atualizaCategoria(idDaCategoria,caminhoParaCategoriaAtualizada) {
+  static async atualizaCategoria(idDaCategoria, caminhoParaCategoriaAtualizada) {
     try {
       const categoriaId = idDaCategoria;
       const encoding = 'utf-8';

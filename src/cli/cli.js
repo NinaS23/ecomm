@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable default-case */
 /* eslint-disable no-shadow */
@@ -22,7 +23,7 @@ async function processarComandos(args) {
       await categoryService.criarCategoria(pegarCaminhoDoArquivo);
       break;
     case '--atualizarCategoria':
-      await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal,caminhoParaCategoriaAtualizada);
+      await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal, caminhoParaCategoriaAtualizada);
       break;
     case '--excluirCategoria':
       await categoryService.deletarCategoria(pegarIdDaCategoriaPeloTerminal);
