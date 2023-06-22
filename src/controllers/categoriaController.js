@@ -5,6 +5,7 @@
 import Categorias from '../models/categoriasModel.js';
 
 class categoriasCrontroller {
+  // deixei tudo no controller por fins educativo
   static async listarCategorias(_, res) {
     try {
       const listaDeCategorias = await Categorias.find();
