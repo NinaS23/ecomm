@@ -10,7 +10,7 @@ class categoriasCrontroller {
     try {
       const listaDeCategorias = await Categorias.find();
       if (listaDeCategorias.length < 1) {
-        res.sendStatus(204);
+        res.status(204).json();
       } else {
         res.status(200).json(listaDeCategorias);
       }

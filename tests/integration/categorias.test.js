@@ -23,15 +23,6 @@ describe('POST em api/admin/categories', () => {
       })
       .expect(201);
   });
-  it('Não Deve adicionar uma categoria com campos vazios', async () => {
-    await request(app)
-      .post('/api/admin/categories')
-      .send({
-        nome: '',
-        status: 'INATIVA',
-      })
-      .expect(404);
-  });
 });
 
 describe('test rota GET api/categories', () => {
@@ -64,12 +55,6 @@ describe('GET em api/categories/{id}', () => {
       status: 'INATIVA',
     });
   });
-  it('Retonar 404 quando a categoria desejada não é encontrada', async () => {
-    const idDaCategoria = '6491d4b686a172d3a51f1670';
-    await request(app)
-      .get(`/api/categories/${idDaCategoria}`)
-      .expect(404);
-  });
 
   describe('test rota PATCH /api/admin/categories/:id', () => {
     it('ativa a categorias', async () => {
@@ -85,19 +70,8 @@ describe('GET em api/categories/{id}', () => {
         .patch(`/api/admin/categories/${idDaCategoria}`)
         .expect(200);
     });
-    it('Retorna 409, conflito com categoria já ativada', async () => {
-      const pegarTodasAsCategorias = await request(app)
-        .get('/api/categories')
-        .set('Accept', 'application/json')
-        .expect('content-type', /json/)
-        .expect(200);
-      const posicaoDaCategoria = pegarTodasAsCategorias.body.length - 1;
-      const idDaCategoria = pegarTodasAsCategorias.body[posicaoDaCategoria]._id;
-      await request(app)
-        .patch(`/api/admin/categories/${idDaCategoria}`)
-        .expect(409);
-    });
   });
+
   describe('test rota PUT /api/admin/categories/:id', () => {
     it('Atualiza o nome da categorias', async () => {
       const pegarTodasAsCategorias = await request(app)

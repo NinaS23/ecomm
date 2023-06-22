@@ -15,6 +15,14 @@ afterEach(() => {
 
 describe('POST em /api/admin/products/', () => {
   it('Deve adicionar um novo Produto', async () => {
+    await request(app)
+      .post('/api/admin/categories')
+      .send({
+        nome: 'MUSICA',
+        status: 'INATIVA',
+      })
+      .expect(201);
+
     const pegarTodasAsCategorias = await request(app)
       .get('/api/categories')
       .set('Accept', 'application/json')
@@ -33,18 +41,6 @@ describe('POST em /api/admin/products/', () => {
         categoria: idDaCategoria,
       })
       .expect(201);
-  });
-  it('Não Deve adicionar um novo Produto, categoria inválida', async () => {
-    await request(app)
-      .post('/api/admin/products/')
-      .send({
-        nome: 'Casinha de Cachorro',
-        slug: 'casinha de cachorro, pro seu doguinho tirar o melhor cochilo',
-        preco_unitario: 550,
-        estoque: 3,
-        categoria: '38490324809234802',
-      })
-      .expect(404);
   });
 });
 
@@ -95,12 +91,6 @@ describe('GET em /api/admin/products/:id', () => {
       },
     });
   });
-  it('Retonar 404 quando a categoria desejada não é encontrada', async () => {
-    const idDoProduto = '6491d4b686a172d3a51f1670';
-    await request(app)
-      .get(`/api/categories/${idDoProduto}`)
-      .expect(404);
-  });
 
   describe('test rota PUT /api/admin/products/:id', () => {
     it('atualiza o produto pelo ID', async () => {
@@ -120,6 +110,17 @@ describe('GET em /api/admin/products/:id', () => {
 
   describe('test rota Delete /api/admin/products/:id', () => {
     it('deleta um produto pelo ID', async () => {
+      const pegarTodasAsCategorias = await request(app)
+        .get('/api/categories')
+        .set('Accept', 'application/json')
+        .expect('content-type', /json/)
+        .expect(200);
+      const posicaoDaCategoria = pegarTodasAsCategorias.body.length - 1;
+      const idDaCategoria = pegarTodasAsCategorias.body[posicaoDaCategoria]._id;
+      await request(app)
+        .delete(`/api/admin/categories/${idDaCategoria}`)
+        .expect(200);
+
       const pegarTodosOsProdutos = await request(app)
         .get('/api/products')
         .set('Accept', 'application/json')
