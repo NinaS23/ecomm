@@ -131,6 +131,25 @@ paths:
           description: Categoria ativada com sucesso
          401:
           description: Não autorizado - somente administradores podem executar esta ação
+    put:
+      summary: Atualizar uma categoria
+      description: Atualizar uma categoria específica pelo ID
+      tags:
+      - categorias
+      security:
+        - auth: []
+      parameters:
+        - in: path
+          name: id
+          description: ID da categoria a ser atualizada
+          required: true
+          schema:
+            type: integer
+      responses:
+         200:
+          description: Categoria atualizada com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
 
   /admin/products:
     post:

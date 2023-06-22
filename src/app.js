@@ -1,10 +1,9 @@
 /* eslint-disable import/extensions */
-
 import express, { json } from 'express';
 import cors from 'cors';
 import chalk from 'chalk';
-import routes from './routes/index.js';
 import db from './config/dbConexao.js';
+import routes from './routes/index.js';
 
 db.on('error', console.log.bind(console, chalk.bgRed('Erro de conexão')));
 db.once('open', () => {
