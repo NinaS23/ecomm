@@ -1,10 +1,11 @@
-use("ecomm")
+/* eslint-disable no-undef */
+use("ecomm");
 
 const productsCategoriesList = db.categories.find({
-    $or: [
-        { categoria: "LIVROS" },
-        { categoria: "CELULARES" }
-    ]
+	$or: [
+		{ categoria: "LIVROS" },
+		{ categoria: "CELULARES" }
+	]
 });
 
 console.log(productsCategoriesList);

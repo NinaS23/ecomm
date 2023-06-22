@@ -1,0 +1,550 @@
+openapi: 3.0.1
+info:
+  title: API de Produtos
+  version: 1.0.0
+servers:
+  - url: /api
+    description: url com os dados  
+paths:
+  /categories:
+    get:
+      tags:
+      - categorias
+      summary: Lista de categorias
+      responses:
+         200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Categoria'
+         404:
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: Not Found
+              
+  /categories/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+    get:
+      summary: Recupera uma Categoria pelo ID
+      tags:
+      - categorias
+      responses:
+         200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Categoria'
+         404:
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: Not Found
+  /admin/categories:
+    post:
+      summary: Cria nova Categoria
+      tags:
+      - categorias
+      security:
+        - auth: []   
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+         201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+  /admin/categories/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+    get:
+      summary: Altera uma Categoria pelo ID
+      tags:
+      - categorias
+      security:
+        - auth: []
+      responses:
+         200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+         404:
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: Not Found
+    delete:
+      summary: Deleta uma categoria pelo ID
+      description: Delata uma categoria pelo ID
+      tags:
+      - categorias
+      security:
+        - auth: []
+      responses:
+         204:
+          description: Deleted
+         401:
+          description: Unauthorized
+         404:
+          description: id not found
+    patch:
+      summary: Ativar uma categoria
+      description: Ativa uma categoria específica pelo ID
+      tags:
+      - categorias
+      security:
+        - auth: []
+      parameters:
+        - in: path
+          name: id
+          description: ID da categoria a ser ativada
+          required: true
+          schema:
+            type: integer
+      responses:
+         200:
+          description: Categoria ativada com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+
+  /admin/products:
+    post:
+      summary: Cria um produto 
+      description: Atualiza um produto 
+      tags:
+      - produtos
+      security:
+        - auth: []
+      requestBody:
+        description: Dados do novo produto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+         201:
+          description: Produto inserido com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+  /products:
+    get:
+      summary: Listar produtos existentes
+      description: Retorna a lista de produtos 
+      tags:
+      - produtos
+      responses:
+         200:
+          description: Lista de produtos retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+         404:
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: Not Found
+  /products/limits:
+    parameters:
+      - name: faixa_preco
+        in: query
+        description: Faixa de preço (mínimo e máximo separados por vírgula)
+        required: false
+        type: string
+      - name: categoria_id
+        in: query
+        description: ID da categoria
+        required: false
+        type: integer
+      - name: estoque_minimo
+        in: query
+        description: Valor mínimo de estoque
+        required: false
+        type: integer
+    get:
+      summary: Listar produtos com base em critérios específicos
+      tags:
+      - produtos
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+          items:
+            $ref: "#/definitions/Produto"
+  /products/{id}:
+    get:
+      summary: Detalhar um produto pelo ID
+      description: Retorna os detalhes de um produto específico pelo ID
+      tags:
+      - produtos
+      parameters:
+        - in: path
+          name: id
+          description: ID do produto a ser detalhado
+          required: true
+          schema:
+            type: integer
+      responses:
+         200:
+          description: Detalhes do produto retornados com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+         404:
+          description: Produto não encontrado      
+  /admin/products/{id}:
+    delete:
+      summary: Remover um produto
+      description: Remove um produto específico pelo ID
+      tags:
+      - produtos
+      security:
+       - auth: []
+      parameters:
+        - in: path
+          name: id
+          description: ID do produto a ser removido
+          required: true
+          schema:
+            type: integer
+      responses:
+         204:
+          description: Produto removido com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+    patch:
+      summary: Atualiza um produto
+      description: Atualiza um produto| pelo ID
+      tags:
+      - produtos
+      security:
+        - auth: []
+      parameters:
+        - in: path
+          name: id
+          description: ID da categoria a ser ativada
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Novos dados do produto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+         200:
+          description: Produto atualizado com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+  /admin/users:
+    post:
+      summary: Inserir um novo usuário
+      description: Insere um novo usuário dentro do sistema
+      tags:
+      - usuarios
+      security:
+       - auth: []
+      requestBody:
+        description: Dados do novo usuário
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+         201:
+          description: Usuário inserido com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+    get:
+      summary: Listar usuários existentes
+      description: Retorna a lista de usuários existentes dentro do sistema
+      security:
+       - auth: []
+      tags:
+      - usuarios
+      responses:
+         200:
+          description: Lista de usuários retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+  /users/{id}:
+    get:
+      summary: Detalhar um usuário pelo ID
+      description: Retorna os detalhes de um usuário específico pelo ID
+      tags:
+      - usuarios
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário a ser detalhado
+          required: true
+          schema:
+            type: integer
+      responses:
+         200:
+          description: sucesso, usuário encontrado!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+         404:
+          description: Usuário não encontrado
+  /admin/users/{id}:
+    patch:
+      summary: Alterar os dados de um usuário
+      description: Altera os dados de um usuário específico pelo ID
+      security:
+       - auth: []
+      tags:
+      - usuarios
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário a ser alterado
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Novos dados do usuário
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+         200:
+          description: Usuário alterado com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+         404:
+          description: Usuário não encontrado
+    delete:
+      summary: Remover um usuário
+      description: Remove um usuário específico pelo ID
+      security:
+       - auth: []
+      tags:
+      - usuarios
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário a ser removido
+          required: true
+          schema:
+            type: integer
+      responses:
+         204:
+          description: Usuário removido com sucesso
+         401:
+          description: Não autorizado - somente administradores podem executar esta ação
+  /orders:
+    post:
+      summary: Realizar um novo pedido
+      description: Realiza um novo pedido
+      tags:
+      - pedidos
+      requestBody:
+        description: Dados do novo pedido
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+         201:
+          description: Pedido realizado com sucesso
+  /orders/{id}:
+    get:
+      summary: Detalhar um pedido pelo ID
+      description: Retorna os detalhes de um pedido específico pelo ID
+      tags:
+      - pedidos
+      parameters:
+        - in: path
+          name: id
+          description: ID do pedido a ser detalhado
+          required: true
+          schema:
+            type: integer
+      responses:
+         200:
+          description: Detalhes do pedido retornados com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+         404:
+          description: Pedido não encontrado
+components:
+  schemas:
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        status:
+          type: string
+    Produto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id Da Categoria
+        nome:
+          type: string
+          description: Nome do produto
+        descricao:
+          type: string
+          description: Descrição do produto
+        slug:
+          type: string
+          description: Slug do produto
+        preco_unitario:
+          type: number
+          description: Preço unitário do produto
+        quantidade_estoque:
+          type: integer
+          description: Tipo
+        Categoria: 
+          $ref: "#/components/schemas/Categoria"
+
+    Usuario:
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do usuário
+        email:
+          type: string
+          format: email
+          description: Email do usuário
+        senha:
+          type: string
+          format: password
+          description: Senha do usuário
+        cpf:
+          type: string
+          description: CPF do usuário
+        telefone:
+          type: string
+          description: Telefone do usuário
+        endereco:
+          type: object
+          description: Informações de endereço do usuário
+          properties:
+            rua:
+              type: string
+              description: Rua do endereço
+            numero:
+              type: string
+              description: Número do endereço
+            complemento:
+              type: string
+              description: Complemento do endereço
+            cep:
+              type: string
+              description: CEP do endereço
+            cidade:
+              type: string
+              description: Cidade do endereço
+            estado:
+              type: string
+              description: Estado do endereço
+            uf:
+              type: string
+    Pedido:
+      type: object
+      properties:
+        id_cliente:
+          type: integer
+          description: ID do cliente
+        endereco_entrega:
+          type: object
+          description: Informações de endereço de entrega
+          properties:
+            rua:
+              type: string
+              description: Rua do endereço de entrega
+            numero:
+              type: string
+              description: Número do endereço de entrega
+            complemento:
+              type: string
+              description: Complemento do endereço de entrega
+            cep:
+              type: string
+              description: CEP do endereço de entrega
+            cidade:
+              type: string
+              description: Cidade do endereço de entrega
+            estado:
+              type: string
+              description: Estado do endereço de entrega
+            uf:
+              type: string
+        itens:
+          type: array
+          description: Lista de itens do pedido
+          items:
+            $ref: '#/components/schemas/ItensDoPedido'
+    ItensDoPedido:
+      type: object
+      properties:
+        id_produto:
+          type: integer
+          description: ID do produto
+        quantidade:
+          type: integer
+          description: Quantidade solicitada
+        desconto:
+          type: number
+          description: Valor de desconto
+        preco_unitario:
+          type: number
+          description: Preço unitário do produto na data da compra (sem desconto)
+  securitySchemes:
+    auth:           
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
