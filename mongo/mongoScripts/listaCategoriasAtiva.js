@@ -1,6 +1,5 @@
-/* eslint-disable no-undef */
-use("ecomm");
+use('ecomm');
 
-const categoriesAtive = db.categories.find({status: "ATIVA"});
+const categoriesAtive = db.categories.find({ status: 'ATIVA' });
 
 console.log(categoriesAtive);

@@ -1,3 +1,8 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable max-len */
+/* eslint-disable import/extensions */
+/* eslint-disable default-case */
+/* eslint-disable no-shadow */
 import categoryService from './CategoryService.js';
 
 const comando = process.argv;
@@ -19,7 +24,7 @@ async function processarComandos(args) {
       await categoryService.criarCategoria(pegarCaminhoDoArquivo);
       break;
     case '--atualizarCategoria':
-      await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal,caminhoParaCategoriaAtualizada);
+      await categoryService.atualizaCategoria(pegarIdDaCategoriaPeloTerminal, caminhoParaCategoriaAtualizada);
       break;
     case '--excluirCategoria':
       await categoryService.deletarCategoria(pegarIdDaCategoriaPeloTerminal);
@@ -28,4 +33,3 @@ async function processarComandos(args) {
 }
 
 processarComandos(comando);
-

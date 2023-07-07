@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-useless-concat */
 import chalk from 'chalk';
 import fs from 'fs';
 
@@ -85,7 +87,7 @@ class categoryService {
     }
   }
 
-  static async atualizaCategoria(idDaCategoria,caminhoParaCategoriaAtualizada) {
+  static async atualizaCategoria(idDaCategoria, caminhoParaCategoriaAtualizada) {
     try {
       const categoriaId = idDaCategoria;
       const encoding = 'utf-8';
@@ -130,5 +132,3 @@ class categoryService {
 }
 
 export default categoryService;
-
-
